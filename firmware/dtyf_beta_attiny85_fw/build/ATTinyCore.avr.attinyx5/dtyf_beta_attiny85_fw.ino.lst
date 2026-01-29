@@ -1,0 +1,2707 @@
+
+/private/var/folders/29/kllrrlc97vqc5shptfvqt_yr0000gn/T/arduino/sketches/3709E5D5E4F7C3334CC83C61009F015D/dtyf_beta_attiny85_fw.ino.elf:     file format elf32-avr
+
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+__vectors():
+   0:	0e c0       	rjmp	.+28     	; 0x1e <__ctors_end>
+   2:	1d c0       	rjmp	.+58     	; 0x3e <__bad_interrupt>
+   4:	a7 c2       	rjmp	.+1358   	; 0x554 <__vector_2>
+   6:	1b c0       	rjmp	.+54     	; 0x3e <__bad_interrupt>
+   8:	1a c0       	rjmp	.+52     	; 0x3e <__bad_interrupt>
+   a:	19 c0       	rjmp	.+50     	; 0x3e <__bad_interrupt>
+   c:	18 c0       	rjmp	.+48     	; 0x3e <__bad_interrupt>
+   e:	17 c0       	rjmp	.+46     	; 0x3e <__bad_interrupt>
+  10:	16 c0       	rjmp	.+44     	; 0x3e <__bad_interrupt>
+  12:	15 c0       	rjmp	.+42     	; 0x3e <__bad_interrupt>
+  14:	14 c0       	rjmp	.+40     	; 0x3e <__bad_interrupt>
+  16:	13 c0       	rjmp	.+38     	; 0x3e <__bad_interrupt>
+  18:	12 c0       	rjmp	.+36     	; 0x3e <__bad_interrupt>
+  1a:	83 c2       	rjmp	.+1286   	; 0x522 <__vector_13>
+  1c:	08 c2       	rjmp	.+1040   	; 0x42e <__vector_14>
+
+0000001e <__ctors_end>:
+__trampolines_start():
+  1e:	11 24       	eor	r1, r1
+  20:	1f be       	out	0x3f, r1	; 63
+  22:	cf e5       	ldi	r28, 0x5F	; 95
+  24:	d2 e0       	ldi	r29, 0x02	; 2
+  26:	de bf       	out	0x3e, r29	; 62
+  28:	cd bf       	out	0x3d, r28	; 61
+
+0000002a <__do_clear_bss>:
+__do_clear_bss():
+/Users/jenkins/jenkins/workspace/avr-gcc-staging/label/mac-mini/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:2441
+  2a:	20 e0       	ldi	r18, 0x00	; 0
+/Users/jenkins/jenkins/workspace/avr-gcc-staging/label/mac-mini/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:2442
+  2c:	a0 e6       	ldi	r26, 0x60	; 96
+/Users/jenkins/jenkins/workspace/avr-gcc-staging/label/mac-mini/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:2443
+  2e:	b0 e0       	ldi	r27, 0x00	; 0
+/Users/jenkins/jenkins/workspace/avr-gcc-staging/label/mac-mini/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:2444
+  30:	01 c0       	rjmp	.+2      	; 0x34 <.do_clear_bss_start>
+
+00000032 <.do_clear_bss_loop>:
+/Users/jenkins/jenkins/workspace/avr-gcc-staging/label/mac-mini/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:2446
+  32:	1d 92       	st	X+, r1
+
+00000034 <.do_clear_bss_start>:
+/Users/jenkins/jenkins/workspace/avr-gcc-staging/label/mac-mini/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:2448
+  34:	a3 39       	cpi	r26, 0x93	; 147
+/Users/jenkins/jenkins/workspace/avr-gcc-staging/label/mac-mini/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:2449
+  36:	b2 07       	cpc	r27, r18
+/Users/jenkins/jenkins/workspace/avr-gcc-staging/label/mac-mini/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:2450
+  38:	e1 f7       	brne	.-8      	; 0x32 <.do_clear_bss_loop>
+.do_clear_bss_start():
+  3a:	9b d2       	rcall	.+1334   	; 0x572 <main>
+  3c:	a2 c4       	rjmp	.+2372   	; 0x982 <_exit>
+
+0000003e <__bad_interrupt>:
+__vector_1():
+  3e:	e0 cf       	rjmp	.-64     	; 0x0 <__vectors>
+
+00000040 <TwoWire::write(unsigned char) [clone .constprop.25]>:
+_ZN7TwoWire5writeEh.constprop.25():
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:507
+
+// must be called in:
+// slave tx event callback
+// or after beginTransmission(address)
+size_t TwoWire::write(uint8_t data) {
+  if (transmitting) { // in master transmitter mode
+  40:	90 91 90 00 	lds	r25, 0x0090	; 0x800090 <TwoWire::transmitting>
+  44:	99 23       	and	r25, r25
+  46:	a1 f0       	breq	.+40     	; 0x70 <TwoWire::write(unsigned char) [clone .constprop.25]+0x30>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:509
+    // don't bother if buffer is full
+    if (BufferLength >= TWI_BUFFER_SIZE) {
+  48:	90 91 92 00 	lds	r25, 0x0092	; 0x800092 <TwoWire::BufferLength>
+  4c:	90 32       	cpi	r25, 0x20	; 32
+  4e:	40 f5       	brcc	.+80     	; 0xa0 <TwoWire::write(unsigned char) [clone .constprop.25]+0x60>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:513
+      return 0;
+    }
+    // put byte in tx buffer
+    Buffer[BufferIndex] = data;
+  50:	90 91 91 00 	lds	r25, 0x0091	; 0x800091 <TwoWire::BufferIndex>
+  54:	e9 2f       	mov	r30, r25
+  56:	f0 e0       	ldi	r31, 0x00	; 0
+  58:	e0 5a       	subi	r30, 0xA0	; 160
+  5a:	ff 4f       	sbci	r31, 0xFF	; 255
+  5c:	80 83       	st	Z, r24
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:514
+    ++BufferIndex;
+  5e:	81 e0       	ldi	r24, 0x01	; 1
+  60:	89 0f       	add	r24, r25
+  62:	80 93 91 00 	sts	0x0091, r24	; 0x800091 <TwoWire::BufferIndex>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:516
+    // update amount in buffer
+    BufferLength = BufferIndex;
+  66:	80 93 92 00 	sts	0x0092, r24	; 0x800092 <TwoWire::BufferLength>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:525
+      return 0;
+    }
+    // reply to master
+    USI_TWI_Transmit_Byte(data);
+  }
+  return 1;
+  6a:	81 e0       	ldi	r24, 0x01	; 1
+  6c:	90 e0       	ldi	r25, 0x00	; 0
+  6e:	08 95       	ret
+USI_TWI_Space_In_Transmission_Buffer():
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:144
+
+// Check if there is space in the transmission buffer.
+unsigned char USI_TWI_Space_In_Transmission_Buffer(void)
+{
+  unsigned char tmpTxHead;
+  tmpTxHead = (TWI_TxHead + 1) & TWI_TX_BUFFER_MASK; // Calculate next buffer index.
+  70:	20 91 8e 00 	lds	r18, 0x008E	; 0x80008e <TWI_TxHead>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:145
+  return (TWI_TxTail - tmpTxHead) & TWI_TX_BUFFER_MASK; // Return 0 (FALSE) if the transmission buffer is full.
+  74:	90 91 8d 00 	lds	r25, 0x008D	; 0x80008d <TWI_TxTail>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:144
+
+// Check if there is space in the transmission buffer.
+unsigned char USI_TWI_Space_In_Transmission_Buffer(void)
+{
+  unsigned char tmpTxHead;
+  tmpTxHead = (TWI_TxHead + 1) & TWI_TX_BUFFER_MASK; // Calculate next buffer index.
+  78:	2f 5f       	subi	r18, 0xFF	; 255
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:145
+  return (TWI_TxTail - tmpTxHead) & TWI_TX_BUFFER_MASK; // Return 0 (FALSE) if the transmission buffer is full.
+  7a:	92 1b       	sub	r25, r18
+  7c:	9f 70       	andi	r25, 0x0F	; 15
+_ZN7TwoWire5writeEh.constprop.25():
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:519
+    ++BufferIndex;
+    // update amount in buffer
+    BufferLength = BufferIndex;
+  } else { // in slave send mode
+    // don't bother if buffer is full
+    if (!USI_TWI_Space_In_Transmission_Buffer()) {
+  7e:	81 f0       	breq	.+32     	; 0xa0 <TwoWire::write(unsigned char) [clone .constprop.25]+0x60>
+USI_TWI_Transmit_Byte():
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:100
+// Puts data in the transmission buffer, Waits if buffer is full.
+void USI_TWI_Transmit_Byte(unsigned char data)
+{
+  unsigned char tmphead;
+
+  tmphead = (TWI_TxHead + 1) & TWI_TX_BUFFER_MASK; // Calculate buffer index.
+  80:	90 91 8e 00 	lds	r25, 0x008E	; 0x80008e <TWI_TxHead>
+  84:	9f 5f       	subi	r25, 0xFF	; 255
+  86:	9f 70       	andi	r25, 0x0F	; 15
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:101
+  while (tmphead == TWI_TxTail)
+  88:	20 91 8d 00 	lds	r18, 0x008D	; 0x80008d <TWI_TxTail>
+  8c:	92 17       	cp	r25, r18
+  8e:	e1 f3       	breq	.-8      	; 0x88 <TwoWire::write(unsigned char) [clone .constprop.25]+0x48>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:103
+    ;                         // Wait for free space in buffer.
+  TWI_TxBuf[tmphead] = data;    // Store data in buffer.
+  90:	e9 2f       	mov	r30, r25
+  92:	f0 e0       	ldi	r31, 0x00	; 0
+  94:	e0 59       	subi	r30, 0x90	; 144
+  96:	ff 4f       	sbci	r31, 0xFF	; 255
+  98:	80 83       	st	Z, r24
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:104
+  TWI_TxHead         = tmphead; // Store new index.
+  9a:	90 93 8e 00 	sts	0x008E, r25	; 0x80008e <TWI_TxHead>
+  9e:	e5 cf       	rjmp	.-54     	; 0x6a <TwoWire::write(unsigned char) [clone .constprop.25]+0x2a>
+_ZN7TwoWire5writeEh.constprop.25():
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:510
+// or after beginTransmission(address)
+size_t TwoWire::write(uint8_t data) {
+  if (transmitting) { // in master transmitter mode
+    // don't bother if buffer is full
+    if (BufferLength >= TWI_BUFFER_SIZE) {
+      return 0;
+  a0:	90 e0       	ldi	r25, 0x00	; 0
+  a2:	80 e0       	ldi	r24, 0x00	; 0
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:526
+    }
+    // reply to master
+    USI_TWI_Transmit_Byte(data);
+  }
+  return 1;
+}
+  a4:	08 95       	ret
+
+000000a6 <TwoWire::beginTransmission(unsigned char) [clone .constprop.24]>:
+_ZN7TwoWire17beginTransmissionEh.constprop.24():
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:462
+  return requestFrom((uint8_t)address, (uint8_t)quantity, (uint8_t)sendStop);
+}
+
+void TwoWire::beginTransmission(uint8_t address) {
+  // indicate that we are transmitting
+  transmitting = 1;
+  a6:	91 e0       	ldi	r25, 0x01	; 1
+  a8:	90 93 90 00 	sts	0x0090, r25	; 0x800090 <TwoWire::transmitting>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:464
+  // set address of targeted slave and write mode
+  Buffer[0] = (address << TWI_ADR_BITS) | (0 << TWI_READ_BIT);
+  ac:	88 0f       	add	r24, r24
+  ae:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__DATA_REGION_ORIGIN__>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:466
+  // reset tx buffer iterator vars
+  BufferIndex = 1; // reserved by slave address
+  b2:	90 93 91 00 	sts	0x0091, r25	; 0x800091 <TwoWire::BufferIndex>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:467
+  BufferLength = BufferIndex;
+  b6:	90 93 92 00 	sts	0x0092, r25	; 0x800092 <TwoWire::BufferLength>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:468
+}
+  ba:	08 95       	ret
+
+000000bc <TwoWire::read() [clone .constprop.21]>:
+_ZN7TwoWire4readEv.constprop.21():
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:551
+
+// must be called in:
+// slave rx event callback
+// or after requestFrom(address, numBytes)
+int TwoWire::available(void) {
+  if (BufferLength) {
+  bc:	80 91 92 00 	lds	r24, 0x0092	; 0x800092 <TwoWire::BufferLength>
+  c0:	88 23       	and	r24, r24
+  c2:	39 f0       	breq	.+14     	; 0xd2 <TwoWire::read() [clone .constprop.21]+0x16>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:552
+    return BufferLength - BufferIndex;
+  c4:	20 91 91 00 	lds	r18, 0x0091	; 0x800091 <TwoWire::BufferIndex>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:565
+// or after requestFrom(address, numBytes)
+int TwoWire::read(void) {
+  int value = -1;
+
+  // get each successive byte on each call
+  if (available()) {
+  c8:	82 13       	cpse	r24, r18
+  ca:	1c c0       	rjmp	.+56     	; 0x104 <TwoWire::read() [clone .constprop.21]+0x48>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:562
+
+// must be called in:
+// slave rx event callback
+// or after requestFrom(address, numBytes)
+int TwoWire::read(void) {
+  int value = -1;
+  cc:	8f ef       	ldi	r24, 0xFF	; 255
+  ce:	9f ef       	ldi	r25, 0xFF	; 255
+  d0:	08 95       	ret
+USI_TWI_Data_In_Receive_Buffer():
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:136
+
+// Check if there is data in the receive buffer.
+unsigned char USI_TWI_Data_In_Receive_Buffer(void)
+{
+  unsigned char tmpRxTail;          // Temporary variable to store volatile
+  tmpRxTail = TWI_RxTail;           // Not necessary, but prevents warnings
+  d2:	90 91 8c 00 	lds	r25, 0x008C	; 0x80008c <TWI_RxTail>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:137
+  return (TWI_RxHead - tmpRxTail) & TWI_RX_BUFFER_MASK; // Return 0 (FALSE) if the receive buffer is empty.
+  d6:	80 91 8b 00 	lds	r24, 0x008B	; 0x80008b <TWI_RxHead>
+  da:	89 1b       	sub	r24, r25
+  dc:	8f 70       	andi	r24, 0x0F	; 15
+_ZN7TwoWire4readEv.constprop.21():
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:565
+
+  // get each successive byte on each call
+  if (available()) {
+  de:	b1 f3       	breq	.-20     	; 0xcc <TwoWire::read() [clone .constprop.21]+0x10>
+USI_TWI_Receive_Byte():
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:112
+// Returns a byte from the receive buffer. Waits if buffer is empty.
+unsigned char USI_TWI_Receive_Byte(void)
+{
+  unsigned char tmptail;
+  unsigned char tmpRxTail; // Temporary variable to store volatile
+  tmpRxTail = TWI_RxTail;  // Not necessary, but prevents warnings
+  e0:	90 91 8c 00 	lds	r25, 0x008C	; 0x80008c <TWI_RxTail>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:113
+  while (TWI_RxHead == tmpRxTail)
+  e4:	80 91 8b 00 	lds	r24, 0x008B	; 0x80008b <TWI_RxHead>
+  e8:	98 17       	cp	r25, r24
+  ea:	e1 f3       	breq	.-8      	; 0xe4 <TwoWire::read() [clone .constprop.21]+0x28>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:115
+    ;
+  tmptail    = (TWI_RxTail + 1) & TWI_RX_BUFFER_MASK; // Calculate buffer index
+  ec:	e0 91 8c 00 	lds	r30, 0x008C	; 0x80008c <TWI_RxTail>
+  f0:	ef 5f       	subi	r30, 0xFF	; 255
+  f2:	ef 70       	andi	r30, 0x0F	; 15
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:116
+  TWI_RxTail = tmptail;                               // Store new index
+  f4:	e0 93 8c 00 	sts	0x008C, r30	; 0x80008c <TWI_RxTail>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:117
+  return TWI_RxBuf[tmptail];                          // Return data from the buffer.
+  f8:	f0 e0       	ldi	r31, 0x00	; 0
+  fa:	e0 5a       	subi	r30, 0xA0	; 160
+  fc:	ff 4f       	sbci	r31, 0xFF	; 255
+_ZN7TwoWire4readEv.constprop.21():
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:570
+    if (BufferLength) {
+      value = Buffer[BufferIndex];
+      ++BufferIndex;
+    } else {
+      value = USI_TWI_Receive_Byte();
+  fe:	80 81       	ld	r24, Z
+ 100:	90 e0       	ldi	r25, 0x00	; 0
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:575
+    }
+  }
+
+  return value;
+}
+ 102:	08 95       	ret
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:567
+  int value = -1;
+
+  // get each successive byte on each call
+  if (available()) {
+    if (BufferLength) {
+      value = Buffer[BufferIndex];
+ 104:	e2 2f       	mov	r30, r18
+ 106:	f0 e0       	ldi	r31, 0x00	; 0
+ 108:	e0 5a       	subi	r30, 0xA0	; 160
+ 10a:	ff 4f       	sbci	r31, 0xFF	; 255
+ 10c:	80 81       	ld	r24, Z
+ 10e:	90 e0       	ldi	r25, 0x00	; 0
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:568
+      ++BufferIndex;
+ 110:	2f 5f       	subi	r18, 0xFF	; 255
+ 112:	20 93 91 00 	sts	0x0091, r18	; 0x800091 <TwoWire::BufferIndex>
+ 116:	08 95       	ret
+
+00000118 <delay>:
+delay():
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/cores/tiny/wiring.c:833
+    // us is at least 4, divided by 4 gives us 1 (no zero delay bug)
+    us >>= 2; // us div 4, = 4 cycles
+  #endif
+
+  // busy wait
+  __asm__ __volatile__ (
+ 118:	24 ef       	ldi	r18, 0xF4	; 244
+ 11a:	30 e0       	ldi	r19, 0x00	; 0
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/cores/tiny/wiring.c:543
+  }
+  void yield(void) __attribute__ ((weak, alias("__empty")));
+
+  void delay(unsigned long ms) //non-millis-timer-dependent delay()
+  {
+    while(ms--){
+ 11c:	61 50       	subi	r22, 0x01	; 1
+ 11e:	71 09       	sbc	r23, r1
+ 120:	81 09       	sbc	r24, r1
+ 122:	91 09       	sbc	r25, r1
+ 124:	08 f4       	brcc	.+2      	; 0x128 <delay+0x10>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/cores/tiny/wiring.c:547
+      yield();
+      delayMicroseconds(1000);
+    }
+  }
+ 126:	08 95       	ret
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/cores/tiny/wiring.c:833
+    // us is at least 4, divided by 4 gives us 1 (no zero delay bug)
+    us >>= 2; // us div 4, = 4 cycles
+  #endif
+
+  // busy wait
+  __asm__ __volatile__ (
+ 128:	f9 01       	movw	r30, r18
+ 12a:	31 97       	sbiw	r30, 0x01	; 1
+ 12c:	f1 f7       	brne	.-4      	; 0x12a <delay+0x12>
+ 12e:	f6 cf       	rjmp	.-20     	; 0x11c <delay+0x4>
+
+00000130 <USI_TWI_Master_Transfer>:
+USI_TWI_Master_Transfer():
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:225
+ Data to be sent has to be placed into the USIDR prior to calling
+ this function. Data read, will be return'ed from the function.
+---------------------------------------------------------------*/
+unsigned char USI_TWI_Master_Transfer(unsigned char temp)
+{
+  USISR = temp;                                          // Set USISR according to temp.
+ 130:	8e b9       	out	0x0e, r24	; 14
+_delay_loop_1():
+/Users/aesters/Library/Arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/avr/include/util/delay_basic.h:83
+    can be achieved.
+*/
+void
+_delay_loop_1(uint8_t __count)
+{
+	__asm__ volatile (
+ 132:	35 e0       	ldi	r19, 0x05	; 5
+USI_TWI_Master_Transfer():
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:233
+         (1 << USIWM1) | (0 << USIWM0) |                 // Set USI in Two-wire mode.
+         (1 << USICS1) | (0 << USICS0) | (1 << USICLK) | // Software clock strobe as source.
+         (1 << USITC);                                   // Toggle Clock Port.
+  do {
+    if (USI_TWI_MASTER_SPEED) DELAY_T2TWI_FM; else DELAY_T2TWI;
+    USICR = temp; // Generate positive SCL edge.
+ 134:	8b e2       	ldi	r24, 0x2B	; 43
+_delay_loop_1():
+/Users/aesters/Library/Arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/avr/include/util/delay_basic.h:83
+ 136:	24 e0       	ldi	r18, 0x04	; 4
+ 138:	93 2f       	mov	r25, r19
+ 13a:	9a 95       	dec	r25
+ 13c:	f1 f7       	brne	.-4      	; 0x13a <USI_TWI_Master_Transfer+0xa>
+USI_TWI_Master_Transfer():
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:233
+ 13e:	8d b9       	out	0x0d, r24	; 13
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:234
+    while (!(PIN_USI_CL & (1 << PIN_USI_SCL)))
+ 140:	b2 9b       	sbis	0x16, 2	; 22
+ 142:	fe cf       	rjmp	.-4      	; 0x140 <USI_TWI_Master_Transfer+0x10>
+_delay_loop_1():
+/Users/aesters/Library/Arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/avr/include/util/delay_basic.h:83
+ 144:	92 2f       	mov	r25, r18
+ 146:	9a 95       	dec	r25
+ 148:	f1 f7       	brne	.-4      	; 0x146 <USI_TWI_Master_Transfer+0x16>
+USI_TWI_Master_Transfer():
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:237
+      ; // Wait for SCL to go high.
+    if (USI_TWI_MASTER_SPEED) DELAY_T4TWI_FM; else DELAY_T4TWI;
+    USICR = temp;                   // Generate negative SCL edge.
+ 14a:	8d b9       	out	0x0d, r24	; 13
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:238
+  } while (!(USISR & (1 << USIOIF))); // Check for transfer complete.
+ 14c:	76 9b       	sbis	0x0e, 6	; 14
+ 14e:	f4 cf       	rjmp	.-24     	; 0x138 <USI_TWI_Master_Transfer+0x8>
+_delay_loop_1():
+/Users/aesters/Library/Arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/avr/include/util/delay_basic.h:83
+ 150:	85 e0       	ldi	r24, 0x05	; 5
+ 152:	8a 95       	dec	r24
+ 154:	f1 f7       	brne	.-4      	; 0x152 <USI_TWI_Master_Transfer+0x22>
+USI_TWI_Master_Transfer():
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:241
+
+  if (USI_TWI_MASTER_SPEED) DELAY_T2TWI_FM; else DELAY_T2TWI;
+  temp  = USIDR;                 // Read out data.
+ 156:	8f b1       	in	r24, 0x0f	; 15
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:242
+  USIDR = 0xFF;                  // Release SDA.
+ 158:	9f ef       	ldi	r25, 0xFF	; 255
+ 15a:	9f b9       	out	0x0f, r25	; 15
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:243
+  DDR_USI |= (1 << PIN_USI_SDA); // Enable SDA as output.
+ 15c:	b8 9a       	sbi	0x17, 0	; 23
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:246
+
+  return temp; // Return the data from the USIDR
+}
+ 15e:	08 95       	ret
+
+00000160 <USI_TWI_Start_Transceiver_With_Data_Stop>:
+USI_TWI_Start_Transceiver_With_Data_Stop():
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:108
+ parameter that defines if a Stop Condition should be send at the end
+ of the transmission.
+---------------------------------------------------------------*/
+
+unsigned char USI_TWI_Start_Transceiver_With_Data_Stop(unsigned char *msg, unsigned char msgSize, unsigned char stop)
+{
+ 160:	ff 92       	push	r15
+ 162:	0f 93       	push	r16
+ 164:	1f 93       	push	r17
+ 166:	cf 93       	push	r28
+ 168:	df 93       	push	r29
+ 16a:	06 2f       	mov	r16, r22
+ 16c:	14 2f       	mov	r17, r20
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:115
+  // Prepare register value to: Clear flags set USI to shift 8 bits i.e. count 16 clock edges.
+
+  unsigned char tempUSISR_1bit = (1 << USISIF) | (1 << USIOIF) | (1 << USIPF) | (1 << USIDC) | (0xE << USICNT0);
+  // Prepare register value to: Clear flags, and set USI to shift 1 bit i.e. count 2 clock edges.
+
+  USI_TWI_state.errorState  = 0;
+ 16e:	21 e0       	ldi	r18, 0x01	; 1
+ 170:	20 93 8f 00 	sts	0x008F, r18	; 0x80008f <USI_TWI_state>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:146
+    USI_TWI_state.errorState = USI_TWI_UE_DATA_COL;
+    return (FALSE);
+  }
+#endif
+
+  if (!(*msg & (1 << TWI_READ_BIT))) // The LSB in the address byte determines if is a masterRead or masterWrite operation.
+ 174:	fc 01       	movw	r30, r24
+ 176:	20 81       	ld	r18, Z
+ 178:	20 fd       	sbrc	r18, 0
+ 17a:	03 c0       	rjmp	.+6      	; 0x182 <USI_TWI_Start_Transceiver_With_Data_Stop+0x22>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:148
+  {
+    USI_TWI_state.masterWriteDataMode = TRUE;
+ 17c:	23 e0       	ldi	r18, 0x03	; 3
+ 17e:	20 93 8f 00 	sts	0x008F, r18	; 0x80008f <USI_TWI_state>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:152
+  }
+
+  /* Release SCL to ensure that (repeated) Start can be performed */
+  PORT_USI_CL |= (1 << PIN_USI_SCL); // Release SCL.
+ 182:	c2 9a       	sbi	0x18, 2	; 24
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:153
+  while (!(PIN_USI_CL & (1 << PIN_USI_SCL)))
+ 184:	b2 9b       	sbis	0x16, 2	; 22
+ 186:	fe cf       	rjmp	.-4      	; 0x184 <USI_TWI_Start_Transceiver_With_Data_Stop+0x24>
+_delay_loop_1():
+/Users/aesters/Library/Arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/avr/include/util/delay_basic.h:83
+ 188:	25 e0       	ldi	r18, 0x05	; 5
+ 18a:	2a 95       	dec	r18
+ 18c:	f1 f7       	brne	.-4      	; 0x18a <USI_TWI_Start_Transceiver_With_Data_Stop+0x2a>
+USI_TWI_Start_Transceiver_With_Data_Stop():
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:159
+    ; // Verify that SCL becomes high.
+  if (USI_TWI_MASTER_SPEED) DELAY_T4TWI_FM; // Delay for T4TWI if TWI_FAST_MODE
+  else DELAY_T2TWI;    // Delay for T2TWI if TWI_STANDARD_MODE
+
+  /* Generate Start Condition */
+  PORT_USI &= ~(1 << PIN_USI_SDA); // Force SDA LOW.
+ 18e:	c0 98       	cbi	0x18, 0	; 24
+_delay_loop_1():
+/Users/aesters/Library/Arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/avr/include/util/delay_basic.h:83
+ 190:	24 e0       	ldi	r18, 0x04	; 4
+ 192:	2a 95       	dec	r18
+ 194:	f1 f7       	brne	.-4      	; 0x192 <USI_TWI_Start_Transceiver_With_Data_Stop+0x32>
+USI_TWI_Start_Transceiver_With_Data_Stop():
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:163
+
+  if (USI_TWI_MASTER_SPEED) DELAY_T4TWI_FM; else DELAY_T4TWI; // UGGGGLLLYYYYY - but if you never call clock() which is the only thing that could change USI_TWI_MASTER_SPEED, should be optimized out
+
+  PORT_USI_CL &= ~(1 << PIN_USI_SCL); // Pull SCL LOW.
+ 196:	c2 98       	cbi	0x18, 2	; 24
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:164
+  PORT_USI |= (1 << PIN_USI_SDA);  // Release SDA.
+ 198:	c0 9a       	sbi	0x18, 0	; 24
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:167
+
+#ifdef SIGNAL_VERIFY
+  if (!(USISR & (1 << USISIF))) {
+ 19a:	77 99       	sbic	0x0e, 7	; 14
+ 19c:	0b c0       	rjmp	.+22     	; 0x1b4 <USI_TWI_Start_Transceiver_With_Data_Stop+0x54>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:168
+    USI_TWI_state.errorState = USI_TWI_MISSING_START_CON;
+ 19e:	87 e0       	ldi	r24, 0x07	; 7
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:186
+
+      /* Clock and verify (N)ACK from slave */
+      DDR_USI &= ~(1 << PIN_USI_SDA); // Enable SDA as input.
+      if (USI_TWI_Master_Transfer(tempUSISR_1bit) & (1 << TWI_NACK_BIT)) {
+        if (USI_TWI_state.addressMode)
+          USI_TWI_state.errorState = USI_TWI_NO_ACK_ON_ADDRESS;
+ 1a0:	80 93 8f 00 	sts	0x008F, r24	; 0x80008f <USI_TWI_state>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:189
+        else
+          USI_TWI_state.errorState = USI_TWI_NO_ACK_ON_DATA;
+        return (FALSE);
+ 1a4:	10 e0       	ldi	r17, 0x00	; 0
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:216
+    USI_TWI_Master_Stop(); // Send a STOP condition on the TWI bus.
+  }
+
+  /* Transmission successfully completed*/
+  return (TRUE);
+}
+ 1a6:	81 2f       	mov	r24, r17
+ 1a8:	df 91       	pop	r29
+ 1aa:	cf 91       	pop	r28
+ 1ac:	1f 91       	pop	r17
+ 1ae:	0f 91       	pop	r16
+ 1b0:	ff 90       	pop	r15
+ 1b2:	08 95       	ret
+ 1b4:	ec 01       	movw	r28, r24
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:202
+      *(msg++) = USI_TWI_Master_Transfer(tempUSISR_8bit);
+
+      /* Prepare to generate ACK (or NACK in case of End Of Transmission) */
+      if (msgSize == 1) // If transmission of last byte was performed.
+      {
+        USIDR = 0xFF; // Load NACK to confirm End Of Transmission.
+ 1b6:	ff 24       	eor	r15, r15
+ 1b8:	fa 94       	dec	r15
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:176
+#endif
+
+  /*Write address and Read/Write data */
+  do {
+    /* If masterWrite cycle (or initial address transmission)*/
+    if (USI_TWI_state.addressMode || USI_TWI_state.masterWriteDataMode) {
+ 1ba:	80 91 8f 00 	lds	r24, 0x008F	; 0x80008f <USI_TWI_state>
+ 1be:	83 70       	andi	r24, 0x03	; 3
+ 1c0:	19 f1       	breq	.+70     	; 0x208 <USI_TWI_Start_Transceiver_With_Data_Stop+0xa8>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:178
+      /* Write a byte */
+      PORT_USI_CL &= ~(1 << PIN_USI_SCL);         // Pull SCL LOW.
+ 1c2:	c2 98       	cbi	0x18, 2	; 24
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:179
+      USIDR = *(msg++);                        // Setup data.
+ 1c4:	88 81       	ld	r24, Y
+ 1c6:	8f b9       	out	0x0f, r24	; 15
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:180
+      USI_TWI_Master_Transfer(tempUSISR_8bit); // Send 8 bits on bus.
+ 1c8:	80 ef       	ldi	r24, 0xF0	; 240
+ 1ca:	b2 df       	rcall	.-156    	; 0x130 <USI_TWI_Master_Transfer>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:183
+
+      /* Clock and verify (N)ACK from slave */
+      DDR_USI &= ~(1 << PIN_USI_SDA); // Enable SDA as input.
+ 1cc:	b8 98       	cbi	0x17, 0	; 23
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:184
+      if (USI_TWI_Master_Transfer(tempUSISR_1bit) & (1 << TWI_NACK_BIT)) {
+ 1ce:	8e ef       	ldi	r24, 0xFE	; 254
+ 1d0:	af df       	rcall	.-162    	; 0x130 <USI_TWI_Master_Transfer>
+ 1d2:	80 ff       	sbrs	r24, 0
+ 1d4:	0c c0       	rjmp	.+24     	; 0x1ee <USI_TWI_Start_Transceiver_With_Data_Stop+0x8e>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:185
+        if (USI_TWI_state.addressMode)
+ 1d6:	80 91 8f 00 	lds	r24, 0x008F	; 0x80008f <USI_TWI_state>
+ 1da:	18 2f       	mov	r17, r24
+ 1dc:	11 70       	andi	r17, 0x01	; 1
+ 1de:	80 ff       	sbrs	r24, 0
+ 1e0:	02 c0       	rjmp	.+4      	; 0x1e6 <USI_TWI_Start_Transceiver_With_Data_Stop+0x86>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:186
+          USI_TWI_state.errorState = USI_TWI_NO_ACK_ON_ADDRESS;
+ 1e2:	86 e0       	ldi	r24, 0x06	; 6
+ 1e4:	dd cf       	rjmp	.-70     	; 0x1a0 <USI_TWI_Start_Transceiver_With_Data_Stop+0x40>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:188
+        else
+          USI_TWI_state.errorState = USI_TWI_NO_ACK_ON_DATA;
+ 1e6:	85 e0       	ldi	r24, 0x05	; 5
+USI_TWI_Master_Stop():
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:264
+  PORT_USI |= (1 << PIN_USI_SDA); // Release SDA.
+  if (USI_TWI_MASTER_SPEED) DELAY_T2TWI_FM; else DELAY_T2TWI;
+
+#ifdef SIGNAL_VERIFY
+  if (!(USISR & (1 << USIPF))) {
+    USI_TWI_state.errorState = USI_TWI_MISSING_STOP_CON;
+ 1e8:	80 93 8f 00 	sts	0x008F, r24	; 0x80008f <USI_TWI_state>
+ 1ec:	dc cf       	rjmp	.-72     	; 0x1a6 <USI_TWI_Start_Transceiver_With_Data_Stop+0x46>
+USI_TWI_Start_Transceiver_With_Data_Stop():
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:191
+          USI_TWI_state.errorState = USI_TWI_NO_ACK_ON_ADDRESS;
+        else
+          USI_TWI_state.errorState = USI_TWI_NO_ACK_ON_DATA;
+        return (FALSE);
+      }
+      USI_TWI_state.addressMode = FALSE; // Only perform address transmission once.
+ 1ee:	80 91 8f 00 	lds	r24, 0x008F	; 0x80008f <USI_TWI_state>
+ 1f2:	8e 7f       	andi	r24, 0xFE	; 254
+ 1f4:	80 93 8f 00 	sts	0x008F, r24	; 0x80008f <USI_TWI_state>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:208
+      } else {
+        USIDR = 0x00; // Load ACK. Set data register bit 7 (output for SDA) low.
+      }
+      USI_TWI_Master_Transfer(tempUSISR_1bit); // Generate ACK/NACK.
+    }
+  } while (--msgSize); // Until all data sent/received.
+ 1f8:	01 50       	subi	r16, 0x01	; 1
+ 1fa:	21 96       	adiw	r28, 0x01	; 1
+ 1fc:	01 11       	cpse	r16, r1
+ 1fe:	dd cf       	rjmp	.-70     	; 0x1ba <USI_TWI_Start_Transceiver_With_Data_Stop+0x5a>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:210
+
+  if (stop) {
+ 200:	11 11       	cpse	r17, r1
+ 202:	0e c0       	rjmp	.+28     	; 0x220 <USI_TWI_Start_Transceiver_With_Data_Stop+0xc0>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:215
+    USI_TWI_Master_Stop(); // Send a STOP condition on the TWI bus.
+  }
+
+  /* Transmission successfully completed*/
+  return (TRUE);
+ 204:	11 e0       	ldi	r17, 0x01	; 1
+ 206:	cf cf       	rjmp	.-98     	; 0x1a6 <USI_TWI_Start_Transceiver_With_Data_Stop+0x46>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:196
+      USI_TWI_state.addressMode = FALSE; // Only perform address transmission once.
+    }
+    /* Else masterRead cycle*/
+    else {
+      /* Read a data byte */
+      DDR_USI &= ~(1 << PIN_USI_SDA); // Enable SDA as input.
+ 208:	b8 98       	cbi	0x17, 0	; 23
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:197
+      *(msg++) = USI_TWI_Master_Transfer(tempUSISR_8bit);
+ 20a:	80 ef       	ldi	r24, 0xF0	; 240
+ 20c:	91 df       	rcall	.-222    	; 0x130 <USI_TWI_Master_Transfer>
+ 20e:	88 83       	st	Y, r24
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:200
+
+      /* Prepare to generate ACK (or NACK in case of End Of Transmission) */
+      if (msgSize == 1) // If transmission of last byte was performed.
+ 210:	01 30       	cpi	r16, 0x01	; 1
+ 212:	21 f4       	brne	.+8      	; 0x21c <USI_TWI_Start_Transceiver_With_Data_Stop+0xbc>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:202
+      {
+        USIDR = 0xFF; // Load NACK to confirm End Of Transmission.
+ 214:	ff b8       	out	0x0f, r15	; 15
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:206
+      } else {
+        USIDR = 0x00; // Load ACK. Set data register bit 7 (output for SDA) low.
+      }
+      USI_TWI_Master_Transfer(tempUSISR_1bit); // Generate ACK/NACK.
+ 216:	8e ef       	ldi	r24, 0xFE	; 254
+ 218:	8b df       	rcall	.-234    	; 0x130 <USI_TWI_Master_Transfer>
+ 21a:	ee cf       	rjmp	.-36     	; 0x1f8 <USI_TWI_Start_Transceiver_With_Data_Stop+0x98>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:204
+      /* Prepare to generate ACK (or NACK in case of End Of Transmission) */
+      if (msgSize == 1) // If transmission of last byte was performed.
+      {
+        USIDR = 0xFF; // Load NACK to confirm End Of Transmission.
+      } else {
+        USIDR = 0x00; // Load ACK. Set data register bit 7 (output for SDA) low.
+ 21c:	1f b8       	out	0x0f, r1	; 15
+ 21e:	fb cf       	rjmp	.-10     	; 0x216 <USI_TWI_Start_Transceiver_With_Data_Stop+0xb6>
+USI_TWI_Master_Stop():
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:254
+ Function for generating a TWI Stop Condition. Used to release
+ the TWI bus.
+---------------------------------------------------------------*/
+unsigned char USI_TWI_Master_Stop(void)
+{
+  PORT_USI &= ~(1 << PIN_USI_SDA); // Pull SDA low.
+ 220:	c0 98       	cbi	0x18, 0	; 24
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:255
+  PORT_USI_CL |= (1 << PIN_USI_SCL);  // Release SCL.
+ 222:	c2 9a       	sbi	0x18, 2	; 24
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:256
+  while (!(PIN_USI_CL & (1 << PIN_USI_SCL)))
+ 224:	b2 9b       	sbis	0x16, 2	; 22
+ 226:	fe cf       	rjmp	.-4      	; 0x224 <USI_TWI_Start_Transceiver_With_Data_Stop+0xc4>
+_delay_loop_1():
+/Users/aesters/Library/Arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/avr/include/util/delay_basic.h:83
+ 228:	84 e0       	ldi	r24, 0x04	; 4
+ 22a:	8a 95       	dec	r24
+ 22c:	f1 f7       	brne	.-4      	; 0x22a <USI_TWI_Start_Transceiver_With_Data_Stop+0xca>
+USI_TWI_Master_Stop():
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:259
+    ; // Wait for SCL to go high.
+  if (USI_TWI_MASTER_SPEED) DELAY_T4TWI_FM; else DELAY_T4TWI;
+  PORT_USI |= (1 << PIN_USI_SDA); // Release SDA.
+ 22e:	c0 9a       	sbi	0x18, 0	; 24
+_delay_loop_1():
+/Users/aesters/Library/Arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/avr/include/util/delay_basic.h:83
+ 230:	85 e0       	ldi	r24, 0x05	; 5
+ 232:	8a 95       	dec	r24
+ 234:	f1 f7       	brne	.-4      	; 0x232 <USI_TWI_Start_Transceiver_With_Data_Stop+0xd2>
+USI_TWI_Master_Stop():
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:263
+  if (USI_TWI_MASTER_SPEED) DELAY_T2TWI_FM; else DELAY_T2TWI;
+
+#ifdef SIGNAL_VERIFY
+  if (!(USISR & (1 << USIPF))) {
+ 236:	75 99       	sbic	0x0e, 5	; 14
+ 238:	e5 cf       	rjmp	.-54     	; 0x204 <USI_TWI_Start_Transceiver_With_Data_Stop+0xa4>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:264
+    USI_TWI_state.errorState = USI_TWI_MISSING_STOP_CON;
+ 23a:	88 e0       	ldi	r24, 0x08	; 8
+ 23c:	d5 cf       	rjmp	.-86     	; 0x1e8 <USI_TWI_Start_Transceiver_With_Data_Stop+0x88>
+
+0000023e <TwoWire::endTransmission() [clone .constprop.26]>:
+_ZN7TwoWire15endTransmissionEv.constprop.26():
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:478
+
+uint8_t TwoWire::endTransmission(uint8_t sendStop) {
+  // transmit buffer (blocking)
+  uint8_t ret = USI_TWI_Start_Transceiver_With_Data_Stop(Buffer,
+                                                         BufferLength,
+                                                         sendStop);
+ 23e:	41 e0       	ldi	r20, 0x01	; 1
+ 240:	60 91 92 00 	lds	r22, 0x0092	; 0x800092 <TwoWire::BufferLength>
+ 244:	80 e6       	ldi	r24, 0x60	; 96
+ 246:	90 e0       	ldi	r25, 0x00	; 0
+ 248:	8b df       	rcall	.-234    	; 0x160 <USI_TWI_Start_Transceiver_With_Data_Stop>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:480
+  // reset tx buffer iterator vars
+  BufferIndex = 0;
+ 24a:	10 92 91 00 	sts	0x0091, r1	; 0x800091 <TwoWire::BufferIndex>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:481
+  BufferLength = 0;
+ 24e:	10 92 92 00 	sts	0x0092, r1	; 0x800092 <TwoWire::BufferLength>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:483
+  // indicate that we are done transmitting
+  transmitting = 0;
+ 252:	10 92 90 00 	sts	0x0090, r1	; 0x800090 <TwoWire::transmitting>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:485
+  // check for error
+  if (ret == FALSE) {
+ 256:	81 11       	cpse	r24, r1
+ 258:	10 c0       	rjmp	.+32     	; 0x27a <__stack+0x1b>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:486
+    switch (USI_TWI_Get_State_Info()) {
+ 25a:	80 91 8f 00 	lds	r24, 0x008F	; 0x80008f <USI_TWI_state>
+ 25e:	85 30       	cpi	r24, 0x05	; 5
+ 260:	41 f0       	breq	.+16     	; 0x272 <__stack+0x13>
+ 262:	86 30       	cpi	r24, 0x06	; 6
+ 264:	21 f0       	breq	.+8      	; 0x26e <__stack+0xf>
+ 266:	81 30       	cpi	r24, 0x01	; 1
+ 268:	31 f4       	brne	.+12     	; 0x276 <__stack+0x17>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:488
+    case USI_TWI_DATA_OUT_OF_BOUND:
+      return 1; //data too long to fit in transmit buffer
+ 26a:	81 e0       	ldi	r24, 0x01	; 1
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:501
+  return 0; //success
+}
+
+uint8_t TwoWire::endTransmission(void) {
+  return endTransmission(true);
+}
+ 26c:	08 95       	ret
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:490
+  if (ret == FALSE) {
+    switch (USI_TWI_Get_State_Info()) {
+    case USI_TWI_DATA_OUT_OF_BOUND:
+      return 1; //data too long to fit in transmit buffer
+    case USI_TWI_NO_ACK_ON_ADDRESS:
+      return 2; //received NACK on transmit of address
+ 26e:	82 e0       	ldi	r24, 0x02	; 2
+ 270:	08 95       	ret
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:492
+    case USI_TWI_NO_ACK_ON_DATA:
+      return 3; //received NACK on transmit of data
+ 272:	83 e0       	ldi	r24, 0x03	; 3
+ 274:	08 95       	ret
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:494
+    }
+    return 4; //other error
+ 276:	84 e0       	ldi	r24, 0x04	; 4
+ 278:	08 95       	ret
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:496
+  }
+  return 0; //success
+ 27a:	80 e0       	ldi	r24, 0x00	; 0
+ 27c:	08 95       	ret
+
+0000027e <I2C_WriteRegister.constprop.23>:
+I2C_WriteRegister.constprop.23():
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:227
+    // device auto-increments register after each read
+  }
+  return reg_value;
+}
+
+void I2C_WriteRegister(uint8_t dev_address, uint8_t reg_address, uint8_t length, uint16_t data) 
+ 27e:	cf 93       	push	r28
+ 280:	df 93       	push	r29
+ 282:	d6 2f       	mov	r29, r22
+ 284:	c4 2f       	mov	r28, r20
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:233
+{
+    uint8_t this_byte = 0;
+    uint8_t n_bitshifts = 0;
+
+    // start I2C comms with device
+    Wire.beginTransmission(dev_address);  
+ 286:	0f df       	rcall	.-482    	; 0xa6 <TwoWire::beginTransmission(unsigned char) [clone .constprop.24]>
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:236
+
+    // set target register for writing
+    Wire.write(reg_address);
+ 288:	8d 2f       	mov	r24, r29
+ 28a:	da de       	rcall	.-588    	; 0x40 <TwoWire::write(unsigned char) [clone .constprop.25]>
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:242
+
+    // write data to registers in big-endian order
+    for (int i = 0; i < length; i++) {
+        n_bitshifts = 8 * (length - 1 - i);      
+        this_byte = (data >> n_bitshifts) & 0xFF; // extract byte to send  
+        Wire.write(this_byte);
+ 28c:	8c 2f       	mov	r24, r28
+ 28e:	d8 de       	rcall	.-592    	; 0x40 <TwoWire::write(unsigned char) [clone .constprop.25]>
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:246
+        // device auto-increments register after each write
+    }
+    Wire.endTransmission();
+}
+ 290:	df 91       	pop	r29
+ 292:	cf 91       	pop	r28
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:245
+        n_bitshifts = 8 * (length - 1 - i);      
+        this_byte = (data >> n_bitshifts) & 0xFF; // extract byte to send  
+        Wire.write(this_byte);
+        // device auto-increments register after each write
+    }
+    Wire.endTransmission();
+ 294:	d4 cf       	rjmp	.-88     	; 0x23e <TwoWire::endTransmission() [clone .constprop.26]>
+
+00000296 <i2cWrite(unsigned char, unsigned char, unsigned char, unsigned char, bool) [clone .constprop.9]>:
+_Z8i2cWritehhhhb.constprop.9():
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:80
+  // return in specified format
+  return static_cast<T>(rawValue);
+}
+
+// I2C write operation
+void i2cWrite(uint8_t command, uint8_t deviceAddress, uint8_t startRegister, uint8_t numBytes, bool bigEndian = false) 
+ 296:	cf 93       	push	r28
+ 298:	df 93       	push	r29
+ 29a:	c8 2f       	mov	r28, r24
+ 29c:	86 2f       	mov	r24, r22
+ 29e:	d4 2f       	mov	r29, r20
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:83
+{ 
+  // start I2C comms with device
+  Wire.beginTransmission(deviceAddress);
+ 2a0:	02 df       	rcall	.-508    	; 0xa6 <TwoWire::beginTransmission(unsigned char) [clone .constprop.24]>
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:86
+
+  // write one byte to each consecutive register
+  Wire.write(startRegister);      
+ 2a2:	8d 2f       	mov	r24, r29
+ 2a4:	cd de       	rcall	.-614    	; 0x40 <TwoWire::write(unsigned char) [clone .constprop.25]>
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:97
+      currentByte = 0xFF & (command >> 8*(numBytes - 1 - i));
+    }
+    else {
+      currentByte = 0xFF & (command >> 8*i);
+    }
+    Wire.write(currentByte);
+ 2a6:	8c 2f       	mov	r24, r28
+ 2a8:	cb de       	rcall	.-618    	; 0x40 <TwoWire::write(unsigned char) [clone .constprop.25]>
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:101
+    // device auto-increments register after each write
+  }
+  Wire.endTransmission();
+}
+ 2aa:	df 91       	pop	r29
+ 2ac:	cf 91       	pop	r28
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:100
+      currentByte = 0xFF & (command >> 8*i);
+    }
+    Wire.write(currentByte);
+    // device auto-increments register after each write
+  }
+  Wire.endTransmission();
+ 2ae:	c7 cf       	rjmp	.-114    	; 0x23e <TwoWire::endTransmission() [clone .constprop.26]>
+
+000002b0 <goToSleep()>:
+_Z9goToSleepv():
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:246
+}
+
+// Place MCU in power-down mode
+void goToSleep() 
+{
+  set_sleep_mode(SLEEP_MODE_PWR_DOWN); // Use power-down mode
+ 2b0:	85 b7       	in	r24, 0x35	; 53
+ 2b2:	87 7e       	andi	r24, 0xE7	; 231
+ 2b4:	80 61       	ori	r24, 0x10	; 16
+ 2b6:	85 bf       	out	0x35, r24	; 53
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:247
+  sleep_enable();
+ 2b8:	85 b7       	in	r24, 0x35	; 53
+ 2ba:	80 62       	ori	r24, 0x20	; 32
+ 2bc:	85 bf       	out	0x35, r24	; 53
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:248
+  sleep_mode();    // Go to sleep
+ 2be:	85 b7       	in	r24, 0x35	; 53
+ 2c0:	80 62       	ori	r24, 0x20	; 32
+ 2c2:	85 bf       	out	0x35, r24	; 53
+ 2c4:	88 95       	sleep
+ 2c6:	85 b7       	in	r24, 0x35	; 53
+ 2c8:	8f 7d       	andi	r24, 0xDF	; 223
+ 2ca:	85 bf       	out	0x35, r24	; 53
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:249
+  sleep_disable(); // Resume here after wake-up
+ 2cc:	85 b7       	in	r24, 0x35	; 53
+ 2ce:	8f 7d       	andi	r24, 0xDF	; 223
+ 2d0:	85 bf       	out	0x35, r24	; 53
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:250
+ 2d2:	08 95       	ret
+
+000002d4 <digitalWrite.constprop.10>:
+digitalWrite.constprop.10():
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/cores/tiny/wiring_digital.c:113
+        //cbi(TCCR1, COM1A0);
+      } else
+    #endif
+    #if defined(TCCR1) && defined(COM1B1) // x5
+      if( timer == TIMER1B){
+        GTCCR &= ~(1<<COM1B1);
+ 2d4:	9c b5       	in	r25, 0x2c	; 44
+ 2d6:	9f 7d       	andi	r25, 0xDF	; 223
+ 2d8:	9c bd       	out	0x2c, r25	; 44
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/cores/tiny/wiring_digital.c:152
+  // before doing a digital write.
+  if (timer != NOT_ON_TIMER) turnOffPWM(timer);
+
+  out = portOutputRegister(port);
+
+  if (val == LOW) {
+ 2da:	81 11       	cpse	r24, r1
+ 2dc:	05 c0       	rjmp	.+10     	; 0x2e8 <digitalWrite.constprop.10+0x14>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/cores/tiny/wiring_digital.c:153
+    uint8_t oldSREG = SREG;
+ 2de:	8f b7       	in	r24, 0x3f	; 63
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/cores/tiny/wiring_digital.c:154
+    cli();
+ 2e0:	f8 94       	cli
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/cores/tiny/wiring_digital.c:155
+    *out &= ~bit;
+ 2e2:	c4 98       	cbi	0x18, 4	; 24
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/cores/tiny/wiring_digital.c:161
+    SREG = oldSREG;
+  } else {
+    uint8_t oldSREG = SREG;
+    cli();
+    *out |= bit;
+    SREG = oldSREG;
+ 2e4:	8f bf       	out	0x3f, r24	; 63
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/cores/tiny/wiring_digital.c:163
+  }
+}
+ 2e6:	08 95       	ret
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/cores/tiny/wiring_digital.c:158
+    uint8_t oldSREG = SREG;
+    cli();
+    *out &= ~bit;
+    SREG = oldSREG;
+  } else {
+    uint8_t oldSREG = SREG;
+ 2e8:	8f b7       	in	r24, 0x3f	; 63
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/cores/tiny/wiring_digital.c:159
+    cli();
+ 2ea:	f8 94       	cli
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/cores/tiny/wiring_digital.c:160
+    *out |= bit;
+ 2ec:	c4 9a       	sbi	0x18, 4	; 24
+ 2ee:	fa cf       	rjmp	.-12     	; 0x2e4 <digitalWrite.constprop.10+0x10>
+
+000002f0 <digitalRead.constprop.0>:
+digitalRead.constprop.0():
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/cores/tiny/wiring_digital.c:180
+  // "read" should *NEVER* change the behavior of the thing you're using it on.
+  // That's why it's called "read" not "write". As an added bonus, sets the
+  // stage for auto-fast-digitalRead() for compile time known pins.
+  // if (timer != NOT_ON_TIMER) turnOffPWM(timer);
+
+  if (*portInputRegister(port) & bit) return HIGH;
+ 2f0:	86 b3       	in	r24, 0x16	; 22
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/cores/tiny/wiring_digital.c:182
+  return LOW;
+}
+ 2f2:	83 fb       	bst	r24, 3
+ 2f4:	88 27       	eor	r24, r24
+ 2f6:	80 f9       	bld	r24, 0
+ 2f8:	90 e0       	ldi	r25, 0x00	; 0
+ 2fa:	08 95       	ret
+
+000002fc <I2C_ReadRegister>:
+I2C_ReadRegister():
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:201
+/*
+I2C helper functions: 
+All I2C functions read and write values in big-endian format.
+*/
+uint16_t I2C_ReadRegister(uint8_t dev_address, uint8_t reg_address, uint8_t length)
+{ 
+ 2fc:	df 92       	push	r13
+ 2fe:	ef 92       	push	r14
+ 300:	ff 92       	push	r15
+ 302:	0f 93       	push	r16
+ 304:	1f 93       	push	r17
+ 306:	cf 93       	push	r28
+ 308:	df 93       	push	r29
+ 30a:	c8 2f       	mov	r28, r24
+ 30c:	16 2f       	mov	r17, r22
+ 30e:	d4 2f       	mov	r29, r20
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:208
+  uint8_t n_bytes_read;     // number of bytes actually read from device
+  uint8_t this_byte;
+  uint8_t n_bitshifts;
+
+  // start I2C comms with device
+  Wire.beginTransmission(dev_address);  
+ 310:	ca de       	rcall	.-620    	; 0xa6 <TwoWire::beginTransmission(unsigned char) [clone .constprop.24]>
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:211
+
+  // set target register for reading
+  Wire.write(reg_address);
+ 312:	81 2f       	mov	r24, r17
+ 314:	95 de       	rcall	.-726    	; 0x40 <TwoWire::write(unsigned char) [clone .constprop.25]>
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:212
+  Wire.endTransmission();
+ 316:	93 df       	rcall	.-218    	; 0x23e <TwoWire::endTransmission() [clone .constprop.26]>
+requestFrom():
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:420
+    }
+    endTransmission(false);
+  }
+
+  // reserve one byte for slave address
+  quantity++;
+ 318:	11 e0       	ldi	r17, 0x01	; 1
+ 31a:	1d 0f       	add	r17, r29
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:426
+  // clamp to buffer length
+  if (quantity > TWI_BUFFER_SIZE) {
+    quantity = TWI_BUFFER_SIZE;
+  }
+  // set address of targeted slave and read mode
+  Buffer[0] = (address << TWI_ADR_BITS) | (1 << TWI_READ_BIT);
+ 31c:	cc 0f       	add	r28, r28
+ 31e:	c1 60       	ori	r28, 0x01	; 1
+ 320:	c0 93 60 00 	sts	0x0060, r28	; 0x800060 <__DATA_REGION_ORIGIN__>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:429
+  // perform blocking read into buffer
+  uint8_t ret = USI_TWI_Start_Transceiver_With_Data_Stop(Buffer, quantity,
+                                                         sendStop);
+ 324:	41 e0       	ldi	r20, 0x01	; 1
+ 326:	61 2f       	mov	r22, r17
+ 328:	80 e6       	ldi	r24, 0x60	; 96
+ 32a:	90 e0       	ldi	r25, 0x00	; 0
+ 32c:	19 df       	rcall	.-462    	; 0x160 <USI_TWI_Start_Transceiver_With_Data_Stop>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:431
+  // set rx buffer iterator vars
+  BufferIndex = 1; // ignore slave address
+ 32e:	91 e0       	ldi	r25, 0x01	; 1
+ 330:	90 93 91 00 	sts	0x0091, r25	; 0x800091 <TwoWire::BufferIndex>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:433
+  // check for error
+  if (ret == FALSE) {
+ 334:	81 11       	cpse	r24, r1
+ 336:	0d c0       	rjmp	.+26     	; 0x352 <I2C_ReadRegister+0x56>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:434
+    BufferLength = BufferIndex;
+ 338:	90 93 92 00 	sts	0x0092, r25	; 0x800092 <TwoWire::BufferLength>
+I2C_ReadRegister():
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:216
+
+  // read contents from registers in big-endian order
+  n_bytes_read = Wire.requestFrom(dev_address, length); 
+  if (n_bytes_read < length) return 0xFFFF;
+ 33c:	0f ef       	ldi	r16, 0xFF	; 255
+ 33e:	1f ef       	ldi	r17, 0xFF	; 255
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:225
+    n_bitshifts = 8 * (length - 1 - i);
+    reg_value |= uint16_t (this_byte << n_bitshifts);
+    // device auto-increments register after each read
+  }
+  return reg_value;
+}
+ 340:	c8 01       	movw	r24, r16
+ 342:	df 91       	pop	r29
+ 344:	cf 91       	pop	r28
+ 346:	1f 91       	pop	r17
+ 348:	0f 91       	pop	r16
+ 34a:	ff 90       	pop	r15
+ 34c:	ef 90       	pop	r14
+ 34e:	df 90       	pop	r13
+ 350:	08 95       	ret
+requestFrom():
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:437
+    return 0;
+  }
+  BufferLength = quantity;
+ 352:	10 93 92 00 	sts	0x0092, r17	; 0x800092 <TwoWire::BufferLength>
+ 356:	dd 2e       	mov	r13, r29
+ 358:	dd 0c       	add	r13, r13
+ 35a:	dd 0c       	add	r13, r13
+ 35c:	dd 0c       	add	r13, r13
+I2C_ReadRegister():
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:218
+
+  // read contents from registers in big-endian order
+  n_bytes_read = Wire.requestFrom(dev_address, length); 
+  if (n_bytes_read < length) return 0xFFFF;
+
+  for (int i = 0; i < length; i++) {    
+ 35e:	f1 2c       	mov	r15, r1
+ 360:	e1 2c       	mov	r14, r1
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:202
+I2C helper functions: 
+All I2C functions read and write values in big-endian format.
+*/
+uint16_t I2C_ReadRegister(uint8_t dev_address, uint8_t reg_address, uint8_t length)
+{ 
+  uint16_t reg_value = 0;   // max 2 bytes
+ 362:	10 e0       	ldi	r17, 0x00	; 0
+ 364:	00 e0       	ldi	r16, 0x00	; 0
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:218
+
+  // read contents from registers in big-endian order
+  n_bytes_read = Wire.requestFrom(dev_address, length); 
+  if (n_bytes_read < length) return 0xFFFF;
+
+  for (int i = 0; i < length; i++) {    
+ 366:	cd 2f       	mov	r28, r29
+ 368:	d0 e0       	ldi	r29, 0x00	; 0
+ 36a:	88 ef       	ldi	r24, 0xF8	; 248
+ 36c:	d8 0e       	add	r13, r24
+ 36e:	ec 16       	cp	r14, r28
+ 370:	fd 06       	cpc	r15, r29
+ 372:	34 f7       	brge	.-52     	; 0x340 <I2C_ReadRegister+0x44>
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:219
+    this_byte = Wire.read();
+ 374:	a3 de       	rcall	.-698    	; 0xbc <TwoWire::read() [clone .constprop.21]>
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:221
+    n_bitshifts = 8 * (length - 1 - i);
+    reg_value |= uint16_t (this_byte << n_bitshifts);
+ 376:	99 27       	eor	r25, r25
+ 378:	0d 2c       	mov	r0, r13
+ 37a:	02 c0       	rjmp	.+4      	; 0x380 <I2C_ReadRegister+0x84>
+ 37c:	88 0f       	add	r24, r24
+ 37e:	99 1f       	adc	r25, r25
+ 380:	0a 94       	dec	r0
+ 382:	e2 f7       	brpl	.-8      	; 0x37c <I2C_ReadRegister+0x80>
+ 384:	08 2b       	or	r16, r24
+ 386:	19 2b       	or	r17, r25
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:218
+
+  // read contents from registers in big-endian order
+  n_bytes_read = Wire.requestFrom(dev_address, length); 
+  if (n_bytes_read < length) return 0xFFFF;
+
+  for (int i = 0; i < length; i++) {    
+ 388:	8f ef       	ldi	r24, 0xFF	; 255
+ 38a:	e8 1a       	sub	r14, r24
+ 38c:	f8 0a       	sbc	r15, r24
+ 38e:	ed cf       	rjmp	.-38     	; 0x36a <I2C_ReadRegister+0x6e>
+
+00000390 <VCNL4020_IsConnected.constprop.14>:
+VCNL4020_IsConnected.constprop.14():
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:41
+bool VCNL4020_IsConnected(VCNL4020 *pDevice) 
+{
+    uint8_t id = 0;
+
+    // Product ID/revision register should return 0x21
+    id = (uint8_t) I2C_ReadRegister(pDevice->address, REG_ID, 1);
+ 390:	41 e0       	ldi	r20, 0x01	; 1
+ 392:	61 e8       	ldi	r22, 0x81	; 129
+ 394:	80 91 86 00 	lds	r24, 0x0086	; 0x800086 <prox_sensor>
+ 398:	b1 df       	rcall	.-158    	; 0x2fc <I2C_ReadRegister>
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:42
+    return (id == 0x21); 
+ 39a:	91 e0       	ldi	r25, 0x01	; 1
+ 39c:	81 32       	cpi	r24, 0x21	; 33
+ 39e:	09 f0       	breq	.+2      	; 0x3a2 <VCNL4020_IsConnected.constprop.14+0x12>
+ 3a0:	90 e0       	ldi	r25, 0x00	; 0
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:43
+}
+ 3a2:	89 2f       	mov	r24, r25
+ 3a4:	08 95       	ret
+
+000003a6 <VCNL4020_ClearInterrupts.constprop.13>:
+VCNL4020_ClearInterrupts.constprop.13():
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:185
+}
+
+VCNL4020_Status VCNL4020_ClearInterrupts(VCNL4020 *pDevice) 
+{
+    // Check for connection
+    pDevice->connected = VCNL4020_IsConnected(pDevice);
+ 3a6:	f4 df       	rcall	.-24     	; 0x390 <VCNL4020_IsConnected.constprop.14>
+ 3a8:	80 93 8a 00 	sts	0x008A, r24	; 0x80008a <prox_sensor+0x4>
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:186
+    if (!pDevice->connected) {
+ 3ac:	88 23       	and	r24, r24
+ 3ae:	41 f0       	breq	.+16     	; 0x3c0 <VCNL4020_ClearInterrupts.constprop.13+0x1a>
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:191
+        return STATUS_CONNECTION_ERROR; 
+    }
+
+    // Write 0b1111 to clear all interrupt flags
+    I2C_WriteRegister(pDevice->address, REG_INT_STATUS, 1, 0x0F);
+ 3b0:	4f e0       	ldi	r20, 0x0F	; 15
+ 3b2:	50 e0       	ldi	r21, 0x00	; 0
+ 3b4:	6e e8       	ldi	r22, 0x8E	; 142
+ 3b6:	80 91 86 00 	lds	r24, 0x0086	; 0x800086 <prox_sensor>
+ 3ba:	61 df       	rcall	.-318    	; 0x27e <I2C_WriteRegister.constprop.23>
+ 3bc:	80 e0       	ldi	r24, 0x00	; 0
+ 3be:	08 95       	ret
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:187
+VCNL4020_Status VCNL4020_ClearInterrupts(VCNL4020 *pDevice) 
+{
+    // Check for connection
+    pDevice->connected = VCNL4020_IsConnected(pDevice);
+    if (!pDevice->connected) {
+        return STATUS_CONNECTION_ERROR; 
+ 3c0:	81 e0       	ldi	r24, 0x01	; 1
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:194
+
+    // Write 0b1111 to clear all interrupt flags
+    I2C_WriteRegister(pDevice->address, REG_INT_STATUS, 1, 0x0F);
+
+    return STATUS_OK;
+}
+ 3c2:	08 95       	ret
+
+000003c4 <VCNL4020_ReadProximity.constprop.11>:
+VCNL4020_ReadProximity.constprop.11():
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:128
+    I2C_WriteRegister(pDevice->address, REG_PROX_RATE, 1, rate);
+
+    return STATUS_OK;
+}
+
+uint16_t VCNL4020_ReadProximity(VCNL4020 *pDevice) 
+ 3c4:	cf 93       	push	r28
+ 3c6:	df 93       	push	r29
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:138
+    */
+    uint16_t reg_value = 0;
+    VCNL4020_Status status;
+
+    // Check for connection
+    pDevice->connected = VCNL4020_IsConnected(pDevice);
+ 3c8:	e3 df       	rcall	.-58     	; 0x390 <VCNL4020_IsConnected.constprop.14>
+ 3ca:	80 93 8a 00 	sts	0x008A, r24	; 0x80008a <prox_sensor+0x4>
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:140
+    if (!pDevice->connected) {
+        return (uint16_t) STATUS_CONNECTION_ERROR; 
+ 3ce:	c1 e0       	ldi	r28, 0x01	; 1
+ 3d0:	d0 e0       	ldi	r29, 0x00	; 0
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:139
+    uint16_t reg_value = 0;
+    VCNL4020_Status status;
+
+    // Check for connection
+    pDevice->connected = VCNL4020_IsConnected(pDevice);
+    if (!pDevice->connected) {
+ 3d2:	88 23       	and	r24, r24
+ 3d4:	01 f1       	breq	.+64     	; 0x416 <__LOCK_REGION_LENGTH__+0x16>
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:144
+        return (uint16_t) STATUS_CONNECTION_ERROR; 
+    }
+
+    // In MANUAL mode, trigger a single measurement
+    if (pDevice->mode == MANUAL) {
+ 3d6:	80 91 88 00 	lds	r24, 0x0088	; 0x800088 <prox_sensor+0x2>
+ 3da:	81 11       	cpse	r24, r1
+ 3dc:	20 c0       	rjmp	.+64     	; 0x41e <__LOCK_REGION_LENGTH__+0x1e>
+ 3de:	c0 91 86 00 	lds	r28, 0x0086	; 0x800086 <prox_sensor>
+I2C_SetBit():
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:253
+void I2C_SetBit(uint8_t dev_address, uint8_t reg_address, uint8_t bit_pos, bool set_clear)
+{
+    uint8_t reg_value = 0;
+
+    // Read current register value
+    reg_value = I2C_ReadRegister(dev_address, reg_address, 1);
+ 3e2:	41 e0       	ldi	r20, 0x01	; 1
+ 3e4:	60 e8       	ldi	r22, 0x80	; 128
+ 3e6:	8c 2f       	mov	r24, r28
+ 3e8:	89 df       	rcall	.-238    	; 0x2fc <I2C_ReadRegister>
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:257
+
+    // Modify bit
+    if (set_clear)  // Set 
+        reg_value |= (1 << bit_pos);   
+ 3ea:	88 60       	ori	r24, 0x08	; 8
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:262
+    else            // Clear 
+        reg_value &= ~(1 << bit_pos);  
+
+    // Update register value 
+    I2C_WriteRegister(dev_address, reg_address, 1, reg_value);
+ 3ec:	48 2f       	mov	r20, r24
+ 3ee:	50 e0       	ldi	r21, 0x00	; 0
+ 3f0:	60 e8       	ldi	r22, 0x80	; 128
+ 3f2:	8c 2f       	mov	r24, r28
+ 3f4:	44 df       	rcall	.-376    	; 0x27e <I2C_WriteRegister.constprop.23>
+VCNL4020_ReadProximity.constprop.11():
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:146
+    }
+
+    // In MANUAL mode, trigger a single measurement
+    if (pDevice->mode == MANUAL) {
+        I2C_SetBit(pDevice->address, REG_COMMAND, 3, true);  // Set bit 3
+        delay(10);
+ 3f6:	6a e0       	ldi	r22, 0x0A	; 10
+ 3f8:	70 e0       	ldi	r23, 0x00	; 0
+ 3fa:	80 e0       	ldi	r24, 0x00	; 0
+ 3fc:	90 e0       	ldi	r25, 0x00	; 0
+ 3fe:	8c de       	rcall	.-744    	; 0x118 <delay>
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:157
+            status_reg = (uint8_t) I2C_ReadRegister(pDevice->address, REG_COMMAND, 1);
+        } while ((status_reg & (1 << 5)) == 0); // Wait until bit 6 is set
+    }
+
+    // Read proximity data from the sensor
+    reg_value = I2C_ReadRegister(pDevice->address, REG_PROX_RESULT, 2);
+ 400:	42 e0       	ldi	r20, 0x02	; 2
+ 402:	67 e8       	ldi	r22, 0x87	; 135
+ 404:	80 91 86 00 	lds	r24, 0x0086	; 0x800086 <prox_sensor>
+ 408:	79 df       	rcall	.-270    	; 0x2fc <I2C_ReadRegister>
+ 40a:	ec 01       	movw	r28, r24
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:160
+
+    // Clear interrupt flags
+    status = VCNL4020_ClearInterrupts(pDevice);
+ 40c:	cc df       	rcall	.-104    	; 0x3a6 <VCNL4020_ClearInterrupts.constprop.13>
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:161
+    if (status != STATUS_OK) {
+ 40e:	88 23       	and	r24, r24
+ 410:	11 f0       	breq	.+4      	; 0x416 <__LOCK_REGION_LENGTH__+0x16>
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:162
+        return (uint16_t) status; 
+ 412:	c8 2f       	mov	r28, r24
+ 414:	d0 e0       	ldi	r29, 0x00	; 0
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:166
+    }
+
+    return reg_value; 
+}
+ 416:	ce 01       	movw	r24, r28
+ 418:	df 91       	pop	r29
+ 41a:	cf 91       	pop	r28
+ 41c:	08 95       	ret
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:152
+    }
+    else {
+        // In AUTO modes, wait for data ready
+        uint8_t status_reg = 0;
+        do {
+            status_reg = (uint8_t) I2C_ReadRegister(pDevice->address, REG_COMMAND, 1);
+ 41e:	41 e0       	ldi	r20, 0x01	; 1
+ 420:	60 e8       	ldi	r22, 0x80	; 128
+ 422:	80 91 86 00 	lds	r24, 0x0086	; 0x800086 <prox_sensor>
+ 426:	6a df       	rcall	.-300    	; 0x2fc <I2C_ReadRegister>
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:153
+        } while ((status_reg & (1 << 5)) == 0); // Wait until bit 6 is set
+ 428:	85 ff       	sbrs	r24, 5
+ 42a:	f9 cf       	rjmp	.-14     	; 0x41e <__LOCK_REGION_LENGTH__+0x1e>
+ 42c:	e9 cf       	rjmp	.-46     	; 0x400 <__LOCK_REGION_LENGTH__>
+
+0000042e <__vector_14>:
+__vector_14():
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:207
+/*----------------------------------------------------------
+ Handles all the communication. Is disabled only when waiting
+ for new Start Condition.
+----------------------------------------------------------*/
+ISR(USI_OVERFLOW_VECTOR)
+{
+ 42e:	1f 92       	push	r1
+ 430:	0f 92       	push	r0
+ 432:	0f b6       	in	r0, 0x3f	; 63
+ 434:	0f 92       	push	r0
+ 436:	11 24       	eor	r1, r1
+ 438:	2f 93       	push	r18
+ 43a:	8f 93       	push	r24
+ 43c:	9f 93       	push	r25
+ 43e:	ef 93       	push	r30
+ 440:	ff 93       	push	r31
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:212
+  unsigned char tmpRxHead;
+  unsigned char tmpTxTail; // Temporary variables to store volatiles
+  unsigned char tmpUSIDR;
+
+  switch (USI_TWI_Overflow_State) {
+ 442:	80 91 81 00 	lds	r24, 0x0081	; 0x800081 <USI_TWI_Overflow_State>
+ 446:	82 30       	cpi	r24, 0x02	; 2
+ 448:	09 f4       	brne	.+2      	; 0x44c <__vector_14+0x1e>
+ 44a:	5e c0       	rjmp	.+188    	; 0x508 <__vector_14+0xda>
+ 44c:	78 f4       	brcc	.+30     	; 0x46c <__vector_14+0x3e>
+ 44e:	88 23       	and	r24, r24
+ 450:	49 f1       	breq	.+82     	; 0x4a4 <__vector_14+0x76>
+ 452:	81 30       	cpi	r24, 0x01	; 1
+ 454:	09 f4       	brne	.+2      	; 0x458 <__vector_14+0x2a>
+ 456:	3e c0       	rjmp	.+124    	; 0x4d4 <__vector_14+0xa6>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:306
+    {
+      SET_USI_TO_SEND_NACK();
+    }
+    break;
+  }
+}
+ 458:	ff 91       	pop	r31
+ 45a:	ef 91       	pop	r30
+ 45c:	9f 91       	pop	r25
+ 45e:	8f 91       	pop	r24
+ 460:	2f 91       	pop	r18
+ 462:	0f 90       	pop	r0
+ 464:	0f be       	out	0x3f, r0	; 63
+ 466:	0f 90       	pop	r0
+ 468:	1f 90       	pop	r1
+ 46a:	18 95       	reti
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:212
+{
+  unsigned char tmpRxHead;
+  unsigned char tmpTxTail; // Temporary variables to store volatiles
+  unsigned char tmpUSIDR;
+
+  switch (USI_TWI_Overflow_State) {
+ 46c:	84 30       	cpi	r24, 0x04	; 4
+ 46e:	09 f4       	brne	.+2      	; 0x472 <__vector_14+0x44>
+ 470:	51 c0       	rjmp	.+162    	; 0x514 <__vector_14+0xe6>
+ 472:	48 f1       	brcs	.+82     	; 0x4c6 <__vector_14+0x98>
+ 474:	85 30       	cpi	r24, 0x05	; 5
+ 476:	81 f7       	brne	.-32     	; 0x458 <__vector_14+0x2a>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:293
+    break;
+
+  // Copy data from USIDR and send ACK. Next USI_SLAVE_REQUEST_DATA
+  case USI_SLAVE_GET_DATA_AND_SEND_ACK:
+    // Put data into Buffer
+    USI_TWI_Overflow_State = USI_SLAVE_REQUEST_DATA;
+ 478:	84 e0       	ldi	r24, 0x04	; 4
+ 47a:	80 93 81 00 	sts	0x0081, r24	; 0x800081 <USI_TWI_Overflow_State>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:294
+    tmpUSIDR              = USIDR; // Not necessary, but prevents warnings
+ 47e:	9f b1       	in	r25, 0x0f	; 15
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:295
+    tmpRxHead = (TWI_RxHead + 1) & TWI_RX_BUFFER_MASK;
+ 480:	80 91 8b 00 	lds	r24, 0x008B	; 0x80008b <TWI_RxHead>
+ 484:	8f 5f       	subi	r24, 0xFF	; 255
+ 486:	8f 70       	andi	r24, 0x0F	; 15
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:296
+    if (TWI_RxTail != tmpRxHead) {
+ 488:	20 91 8c 00 	lds	r18, 0x008C	; 0x80008c <TWI_RxTail>
+ 48c:	28 17       	cp	r18, r24
+ 48e:	09 f4       	brne	.+2      	; 0x492 <__vector_14+0x64>
+ 490:	46 c0       	rjmp	.+140    	; 0x51e <__vector_14+0xf0>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:297
+      TWI_RxHead            = tmpRxHead;
+ 492:	80 93 8b 00 	sts	0x008B, r24	; 0x80008b <TWI_RxHead>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:298
+      TWI_RxBuf[TWI_RxHead] = tmpUSIDR;
+ 496:	e0 91 8b 00 	lds	r30, 0x008B	; 0x80008b <TWI_RxHead>
+ 49a:	f0 e0       	ldi	r31, 0x00	; 0
+ 49c:	e0 5a       	subi	r30, 0xA0	; 160
+ 49e:	ff 4f       	sbci	r31, 0xFF	; 255
+ 4a0:	90 83       	st	Z, r25
+ 4a2:	0b c0       	rjmp	.+22     	; 0x4ba <__vector_14+0x8c>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:216
+
+  switch (USI_TWI_Overflow_State) {
+  // ---------- Address mode ----------
+  // Check address and send ACK (and next USI_SLAVE_SEND_DATA) if OK, else reset USI.
+  case USI_SLAVE_CHECK_ADDRESS:
+    if ((USIDR == 0) || ((USIDR >> 1) == TWI_slaveAddress)) {
+ 4a4:	8f b1       	in	r24, 0x0f	; 15
+ 4a6:	88 23       	and	r24, r24
+ 4a8:	19 f0       	breq	.+6      	; 0x4b0 <__vector_14+0x82>
+ 4aa:	8f b1       	in	r24, 0x0f	; 15
+ 4ac:	86 95       	lsr	r24
+ 4ae:	71 f4       	brne	.+28     	; 0x4cc <__vector_14+0x9e>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:217
+      if (USIDR & 0x01) {
+ 4b0:	78 9b       	sbis	0x0f, 0	; 15
+ 4b2:	07 c0       	rjmp	.+14     	; 0x4c2 <__vector_14+0x94>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:224
+          // reset tx buffer and call callback
+          tmpTxTail = TWI_TxHead;
+          TWI_TxTail = tmpTxTail;
+          USI_TWI_On_Slave_Transmit();
+        }
+        USI_TWI_Overflow_State = USI_SLAVE_SEND_DATA;
+ 4b4:	81 e0       	ldi	r24, 0x01	; 1
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:226
+      } else {
+        USI_TWI_Overflow_State = USI_SLAVE_REQUEST_DATA;
+ 4b6:	80 93 81 00 	sts	0x0081, r24	; 0x800081 <USI_TWI_Overflow_State>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:228
+      }
+      SET_USI_TO_SEND_ACK();
+ 4ba:	1f b8       	out	0x0f, r1	; 15
+ 4bc:	b8 9a       	sbi	0x17, 0	; 23
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:302
+      TWI_RxHead            = tmpRxHead;
+      TWI_RxBuf[TWI_RxHead] = tmpUSIDR;
+      SET_USI_TO_SEND_ACK();
+    } else // If the buffer is full then:
+    {
+      SET_USI_TO_SEND_NACK();
+ 4be:	8e e7       	ldi	r24, 0x7E	; 126
+ 4c0:	21 c0       	rjmp	.+66     	; 0x504 <__vector_14+0xd6>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:226
+          TWI_TxTail = tmpTxTail;
+          USI_TWI_On_Slave_Transmit();
+        }
+        USI_TWI_Overflow_State = USI_SLAVE_SEND_DATA;
+      } else {
+        USI_TWI_Overflow_State = USI_SLAVE_REQUEST_DATA;
+ 4c2:	84 e0       	ldi	r24, 0x04	; 4
+ 4c4:	f8 cf       	rjmp	.-16     	; 0x4b6 <__vector_14+0x88>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:237
+    break;
+
+  // ----- Master write data mode ------
+  // Check reply and goto USI_SLAVE_SEND_DATA if OK, else reset USI.
+  case USI_SLAVE_CHECK_REPLY_FROM_SEND_DATA:
+    if (USIDR) // If NACK, the master does not want more data.
+ 4c6:	8f b1       	in	r24, 0x0f	; 15
+ 4c8:	88 23       	and	r24, r24
+ 4ca:	21 f0       	breq	.+8      	; 0x4d4 <__vector_14+0xa6>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:255
+    if (TWI_TxHead != tmpTxTail) {
+      TWI_TxTail = (TWI_TxTail + 1) & TWI_TX_BUFFER_MASK;
+      USIDR      = TWI_TxBuf[TWI_TxTail];
+    } else // If the buffer is empty then:
+    {
+      SET_USI_TO_TWI_START_CONDITION_MODE();
+ 4cc:	b8 98       	cbi	0x17, 0	; 23
+ 4ce:	88 ea       	ldi	r24, 0xA8	; 168
+ 4d0:	8d b9       	out	0x0d, r24	; 13
+ 4d2:	17 c0       	rjmp	.+46     	; 0x502 <__vector_14+0xd4>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:249
+  // Copy data from buffer to USIDR and set USI to shift byte. Next USI_SLAVE_REQUEST_REPLY_FROM_SEND_DATA
+  /* Falls through. */
+  case USI_SLAVE_SEND_DATA:
+
+    // Get data from Buffer
+    tmpTxTail = TWI_TxTail; // Not necessary, but prevents warnings
+ 4d4:	80 91 8d 00 	lds	r24, 0x008D	; 0x80008d <TWI_TxTail>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:250
+    if (TWI_TxHead != tmpTxTail) {
+ 4d8:	90 91 8e 00 	lds	r25, 0x008E	; 0x80008e <TWI_TxHead>
+ 4dc:	98 17       	cp	r25, r24
+ 4de:	b1 f3       	breq	.-20     	; 0x4cc <__vector_14+0x9e>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:251
+      TWI_TxTail = (TWI_TxTail + 1) & TWI_TX_BUFFER_MASK;
+ 4e0:	80 91 8d 00 	lds	r24, 0x008D	; 0x80008d <TWI_TxTail>
+ 4e4:	8f 5f       	subi	r24, 0xFF	; 255
+ 4e6:	8f 70       	andi	r24, 0x0F	; 15
+ 4e8:	80 93 8d 00 	sts	0x008D, r24	; 0x80008d <TWI_TxTail>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:252
+      USIDR      = TWI_TxBuf[TWI_TxTail];
+ 4ec:	e0 91 8d 00 	lds	r30, 0x008D	; 0x80008d <TWI_TxTail>
+ 4f0:	f0 e0       	ldi	r31, 0x00	; 0
+ 4f2:	e0 59       	subi	r30, 0x90	; 144
+ 4f4:	ff 4f       	sbci	r31, 0xFF	; 255
+ 4f6:	80 81       	ld	r24, Z
+ 4f8:	8f b9       	out	0x0f, r24	; 15
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:258
+    } else // If the buffer is empty then:
+    {
+      SET_USI_TO_TWI_START_CONDITION_MODE();
+      return;
+    }
+    USI_TWI_Overflow_State = USI_SLAVE_REQUEST_REPLY_FROM_SEND_DATA;
+ 4fa:	82 e0       	ldi	r24, 0x02	; 2
+ 4fc:	80 93 81 00 	sts	0x0081, r24	; 0x800081 <USI_TWI_Overflow_State>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:259
+    SET_USI_TO_SEND_DATA();
+ 500:	b8 9a       	sbi	0x17, 0	; 23
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:272
+
+  // ----- Master read data mode ------
+  // Set USI to sample data from master. Next USI_SLAVE_GET_DATA_AND_SEND_ACK.
+  case USI_SLAVE_REQUEST_DATA:
+    USI_TWI_Overflow_State = USI_SLAVE_GET_DATA_AND_SEND_ACK;
+    SET_USI_TO_READ_DATA();
+ 502:	80 e7       	ldi	r24, 0x70	; 112
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:302
+      TWI_RxHead            = tmpRxHead;
+      TWI_RxBuf[TWI_RxHead] = tmpUSIDR;
+      SET_USI_TO_SEND_ACK();
+    } else // If the buffer is full then:
+    {
+      SET_USI_TO_SEND_NACK();
+ 504:	8e b9       	out	0x0e, r24	; 14
+ 506:	a8 cf       	rjmp	.-176    	; 0x458 <__vector_14+0x2a>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:264
+    SET_USI_TO_SEND_DATA();
+    break;
+
+  // Set USI to sample reply from master. Next USI_SLAVE_CHECK_REPLY_FROM_SEND_DATA
+  case USI_SLAVE_REQUEST_REPLY_FROM_SEND_DATA:
+    USI_TWI_Overflow_State = USI_SLAVE_CHECK_REPLY_FROM_SEND_DATA;
+ 508:	83 e0       	ldi	r24, 0x03	; 3
+ 50a:	80 93 81 00 	sts	0x0081, r24	; 0x800081 <USI_TWI_Overflow_State>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:265
+    SET_USI_TO_READ_ACK();
+ 50e:	b8 98       	cbi	0x17, 0	; 23
+ 510:	1f b8       	out	0x0f, r1	; 15
+ 512:	d5 cf       	rjmp	.-86     	; 0x4be <__vector_14+0x90>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:271
+    break;
+
+  // ----- Master read data mode ------
+  // Set USI to sample data from master. Next USI_SLAVE_GET_DATA_AND_SEND_ACK.
+  case USI_SLAVE_REQUEST_DATA:
+    USI_TWI_Overflow_State = USI_SLAVE_GET_DATA_AND_SEND_ACK;
+ 514:	85 e0       	ldi	r24, 0x05	; 5
+ 516:	80 93 81 00 	sts	0x0081, r24	; 0x800081 <USI_TWI_Overflow_State>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:272
+    SET_USI_TO_READ_DATA();
+ 51a:	b8 98       	cbi	0x17, 0	; 23
+ 51c:	f2 cf       	rjmp	.-28     	; 0x502 <__vector_14+0xd4>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:302
+      TWI_RxHead            = tmpRxHead;
+      TWI_RxBuf[TWI_RxHead] = tmpUSIDR;
+      SET_USI_TO_SEND_ACK();
+    } else // If the buffer is full then:
+    {
+      SET_USI_TO_SEND_NACK();
+ 51e:	b8 98       	cbi	0x17, 0	; 23
+ 520:	ce cf       	rjmp	.-100    	; 0x4be <__vector_14+0x90>
+
+00000522 <__vector_13>:
+__vector_13():
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:165
+ISR(USI_START_VECTOR)
+#elif __ICCAVR__
+#pragma vector = USI_START_VECTOR
+__interrupt void USI_Start_Condition_ISR(void)
+#endif
+{
+ 522:	1f 92       	push	r1
+ 524:	0f 92       	push	r0
+ 526:	0f b6       	in	r0, 0x3f	; 63
+ 528:	0f 92       	push	r0
+ 52a:	11 24       	eor	r1, r1
+ 52c:	8f 93       	push	r24
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:178
+      // reset rx buffer
+      TWI_RxTail = tmpRxHead;
+    }
+  }
+
+  USI_TWI_Overflow_State = USI_SLAVE_CHECK_ADDRESS;
+ 52e:	10 92 81 00 	sts	0x0081, r1	; 0x800081 <USI_TWI_Overflow_State>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:179
+  DDR_USI &= ~(1 << PORT_USI_SDA); // Set SDA as input
+ 532:	b8 98       	cbi	0x17, 0	; 23
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:180
+  while ((tmpPin = (PIN_USI_CL & (1 << PORT_USI_SCL))) && ((PIN_USI & (1 << PIN_USI_SDA)) == 0))
+ 534:	b2 9b       	sbis	0x16, 2	; 22
+ 536:	04 c0       	rjmp	.+8      	; 0x540 <__vector_13+0x1e>
+ 538:	b0 9b       	sbis	0x16, 0	; 22
+ 53a:	fc cf       	rjmp	.-8      	; 0x534 <__vector_13+0x12>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:185
+    ; // Wait for SCL to go low to ensure the "Start Condition" has completed.
+        // If a Stop condition arises then leave the interrupt to prevent waiting forever.
+  if (tmpPin) {
+    // Stop Condition (waiting for next Start Condition)
+    USICR = (1 << USISIE) | (0 << USIOIE) | // Enable Start Condition Interrupt. Disable Overflow Interrupt.
+ 53c:	88 ea       	ldi	r24, 0xA8	; 168
+ 53e:	01 c0       	rjmp	.+2      	; 0x542 <__vector_13+0x20>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:192
+                                            // to first Start Condition (potential failure)
+            (1 << USICS1) | (0 << USICS0) | (0 << USICLK) | // Shift Register Clock Source = External, positive edge
+            (0 << USITC);
+  } else {
+    // really Start Condition (Enable Overflow Interrupt)
+    USICR = (1 << USISIE) | (1 << USIOIE)
+ 540:	88 ef       	ldi	r24, 0xF8	; 248
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:185
+  while ((tmpPin = (PIN_USI_CL & (1 << PORT_USI_SCL))) && ((PIN_USI & (1 << PIN_USI_SDA)) == 0))
+    ; // Wait for SCL to go low to ensure the "Start Condition" has completed.
+        // If a Stop condition arises then leave the interrupt to prevent waiting forever.
+  if (tmpPin) {
+    // Stop Condition (waiting for next Start Condition)
+    USICR = (1 << USISIE) | (0 << USIOIE) | // Enable Start Condition Interrupt. Disable Overflow Interrupt.
+ 542:	8d b9       	out	0x0d, r24	; 13
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:198
+            | // Enable Overflow and Start Condition Interrupt. (Keep StartCondInt to detect RESTART)
+            (1 << USIWM1) | (1 << USIWM0) |                 // Set USI in Two-wire mode.
+            (1 << USICS1) | (0 << USICS0) | (0 << USICLK) | // Shift Register Clock Source = External, positive edge
+            (0 << USITC);
+  }
+  USISR = (1 << USI_START_COND_INT) | (1 << USIOIF) | (1 << USIPF) | (1 << USIDC) | // Clear flags
+ 544:	80 ef       	ldi	r24, 0xF0	; 240
+ 546:	8e b9       	out	0x0e, r24	; 14
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Slave/USI_TWI_Slave.c:200
+          (0x0 << USICNT0); // Set USI to sample 8 bits i.e. count 16 external pin toggles.
+}
+ 548:	8f 91       	pop	r24
+ 54a:	0f 90       	pop	r0
+ 54c:	0f be       	out	0x3f, r0	; 63
+ 54e:	0f 90       	pop	r0
+ 550:	1f 90       	pop	r1
+ 552:	18 95       	reti
+
+00000554 <__vector_2>:
+__vector_2():
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:174
+    }
+  }
+}
+
+// Interrupt Service Routine for Pin Change Interrupt on Port D
+ISR(PCINT0_vect) {
+ 554:	1f 92       	push	r1
+ 556:	0f 92       	push	r0
+ 558:	0f b6       	in	r0, 0x3f	; 63
+ 55a:	0f 92       	push	r0
+ 55c:	11 24       	eor	r1, r1
+ 55e:	8f 93       	push	r24
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:175
+  int_triggered = true; 
+ 560:	81 e0       	ldi	r24, 0x01	; 1
+ 562:	80 93 80 00 	sts	0x0080, r24	; 0x800080 <int_triggered>
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:176
+}
+ 566:	8f 91       	pop	r24
+ 568:	0f 90       	pop	r0
+ 56a:	0f be       	out	0x3f, r0	; 63
+ 56c:	0f 90       	pop	r0
+ 56e:	1f 90       	pop	r1
+ 570:	18 95       	reti
+
+00000572 <main>:
+main():
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/cores/tiny/wiring.c:1138
+*/
+
+  // Use the Millis Timer for fast PWM (unless it doesn't have an output).
+  #if (TIMER_TO_USE_FOR_MILLIS == 0)
+    #if defined(WGM01) // if Timer0 has PWM
+      TCCR0A = (1<<WGM01) | (1<<WGM00);
+ 572:	83 e0       	ldi	r24, 0x03	; 3
+ 574:	8a bd       	out	0x2a, r24	; 42
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/cores/tiny/wiring.c:1141
+    #endif
+    #if defined(TCCR0B) //The x61 has a wacky Timer0!
+      TCCR0B = (MillisTimer_Prescale_Index << CS00);
+ 576:	82 e0       	ldi	r24, 0x02	; 2
+ 578:	83 bf       	out	0x33, r24	; 51
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/cores/tiny/wiring.c:1162
+    TCCR1A = 1<<WGM10;
+    TCCR1B = (1<<WGM12) | (MillisTimer_Prescale_Index << CS10);
+  #endif
+
+  // this needs to be called before setup() or some functions won't work there
+  sei();
+ 57a:	78 94       	sei
+initToneTimerInternal():
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/cores/tiny/wiring.c:958
+    #elif defined(__AVR_ATtiny43__)
+      TCCR1A = 3; //WGM 10=1, WGM11=1
+      TCCR1B = 3; //prescaler of 64
+    #elif (TIMER_TO_USE_FOR_TONE == 1) && defined(TCCR1) // ATtiny x5
+      // Use the Tone Timer for fast PWM as phase correct not supported by this timer
+      GTCCR = (1<<PWM1B);
+ 57c:	80 e4       	ldi	r24, 0x40	; 64
+ 57e:	8c bd       	out	0x2c, r24	; 44
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/cores/tiny/wiring.c:959
+      OCR1C = 0xFF; //Use 255 as the top to match with the others as this module doesn't have a 8bit PWM mode.
+ 580:	1f ef       	ldi	r17, 0xFF	; 255
+ 582:	1d bd       	out	0x2d, r17	; 45
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/cores/tiny/wiring.c:960
+      TCCR1 = (1<<CTC1) | (1<<PWM1A) | (ToneTimer_Prescale_Index << CS10);
+ 584:	84 ec       	ldi	r24, 0xC4	; 196
+ 586:	80 bf       	out	0x30, r24	; 48
+main():
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/cores/tiny/wiring.c:1214
+  #if defined( INITIALIZE_ANALOG_TO_DIGITAL_CONVERTER ) && INITIALIZE_ANALOG_TO_DIGITAL_CONVERTER
+    #if defined(ADCSRA)
+      // set a2d prescale factor
+      // ADCSRA = (ADCSRA & ~((1<<ADPS2)|(1<<ADPS1)|(1<<ADPS0))) | (ADC_ARDUINO_PRESCALER << ADPS0) | (1<<ADEN);
+      // dude, this is being called on startup. We know that ADCSRA is 0! Why add a RMW cycle?!
+      ADCSRA = (ADC_ARDUINO_PRESCALER << ADPS0) | (1<<ADEN);
+ 588:	83 e8       	ldi	r24, 0x83	; 131
+ 58a:	86 b9       	out	0x06, r24	; 6
+pinMode():
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/cores/tiny/wiring_digital.c:57
+                cli();
+    *reg &= ~bit;
+    *out |= bit;
+    SREG = oldSREG;
+  } else {
+    uint8_t oldSREG = SREG;
+ 58c:	8f b7       	in	r24, 0x3f	; 63
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/cores/tiny/wiring_digital.c:58
+                cli();
+ 58e:	f8 94       	cli
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/cores/tiny/wiring_digital.c:59
+    *reg |= bit;
+ 590:	bc 9a       	sbi	0x17, 4	; 23
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/cores/tiny/wiring_digital.c:60
+    SREG = oldSREG;
+ 592:	8f bf       	out	0x3f, r24	; 63
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/cores/tiny/wiring_digital.c:51
+                cli();
+    *reg &= ~bit;
+    *out &= ~bit;
+    SREG = oldSREG;
+  } else if (mode == INPUT_PULLUP) {
+    uint8_t oldSREG = SREG;
+ 594:	8f b7       	in	r24, 0x3f	; 63
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/cores/tiny/wiring_digital.c:52
+                cli();
+ 596:	f8 94       	cli
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/cores/tiny/wiring_digital.c:53
+    *reg &= ~bit;
+ 598:	bb 98       	cbi	0x17, 3	; 23
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/cores/tiny/wiring_digital.c:54
+    *out |= bit;
+ 59a:	c3 9a       	sbi	0x18, 3	; 24
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/cores/tiny/wiring_digital.c:55
+    SREG = oldSREG;
+ 59c:	8f bf       	out	0x3f, r24	; 63
+setup():
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:111
+
+void setup() {
+  /// BOARD SETUP ///
+  pinMode(ALERT_PIN, OUTPUT);
+  pinMode(INT_PIN, INPUT_PULLUP);
+  digitalWrite(ALERT_PIN, LOW);
+ 59e:	80 e0       	ldi	r24, 0x00	; 0
+ 5a0:	99 de       	rcall	.-718    	; 0x2d4 <digitalWrite.constprop.10>
+begin():
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:364
+}
+
+// Public Methods //////////////////////////////////////////////////////////////
+
+void TwoWire::begin(void) {
+  BufferIndex = 0;
+ 5a2:	10 92 91 00 	sts	0x0091, r1	; 0x800091 <TwoWire::BufferIndex>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:365
+  BufferLength = 0;
+ 5a6:	10 92 92 00 	sts	0x0092, r1	; 0x800092 <TwoWire::BufferLength>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:367
+
+  transmitting = 0;
+ 5aa:	10 92 90 00 	sts	0x0090, r1	; 0x800090 <TwoWire::transmitting>
+USI_TWI_Master_Initialise():
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:61
+{
+  #ifdef PUE_USI
+  PUE_USI |=(1 << PIN_USI_SDA);
+  PUE_USI_CL |=(1 << PIN_USI_SCL);
+  #endif
+  PORT_USI |= (1 << PIN_USI_SDA); // Enable pullup on SDA, to set high as released state.
+ 5ae:	c0 9a       	sbi	0x18, 0	; 24
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:62
+  PORT_USI_CL |= (1 << PIN_USI_SCL); // Enable pullup on SCL, to set high as released state.
+ 5b0:	c2 9a       	sbi	0x18, 2	; 24
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:64
+
+  DDR_USI_CL |= (1 << PIN_USI_SCL); // Enable SCL as output.
+ 5b2:	ba 9a       	sbi	0x17, 2	; 23
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:65
+  DDR_USI |= (1 << PIN_USI_SDA); // Enable SDA as output.
+ 5b4:	b8 9a       	sbi	0x17, 0	; 23
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:67
+
+  USIDR = 0xFF;                                           // Preload dataregister with "released level" data.
+ 5b6:	1f b9       	out	0x0f, r17	; 15
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:68
+  USICR = (0 << USISIE) | (0 << USIOIE) |                 // Disable Interrupts.
+ 5b8:	8a e2       	ldi	r24, 0x2A	; 42
+ 5ba:	8d b9       	out	0x0d, r24	; 13
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/USI_TWI_Master/USI_TWI_Master.c:72
+          (1 << USIWM1) | (0 << USIWM0) |                 // Set USI in Two-wire mode.
+          (1 << USICS1) | (0 << USICS0) | (1 << USICLK) | // Software stobe as counter clock source
+          (0 << USITC);
+  USISR = (1 << USISIF) | (1 << USIOIF) | (1 << USIPF) | (1 << USIDC) | // Clear flags,
+ 5bc:	80 ef       	ldi	r24, 0xF0	; 240
+ 5be:	8e b9       	out	0x0e, r24	; 14
+setup():
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:113
+  Wire.begin();  // initialize I2C
+  delay(50);
+ 5c0:	62 e3       	ldi	r22, 0x32	; 50
+ 5c2:	70 e0       	ldi	r23, 0x00	; 0
+ 5c4:	80 e0       	ldi	r24, 0x00	; 0
+ 5c6:	90 e0       	ldi	r25, 0x00	; 0
+ 5c8:	a7 dd       	rcall	.-1202   	; 0x118 <delay>
+setupSensors():
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:184
+
+// Configure sensors
+void setupSensors() 
+{
+  // Disable magnetometer
+  i2cWrite(0b11, ADDR_MAG, CFG_REG_A_M, 1);
+ 5ca:	40 e6       	ldi	r20, 0x60	; 96
+ 5cc:	6e e1       	ldi	r22, 0x1E	; 30
+ 5ce:	83 e0       	ldi	r24, 0x03	; 3
+ 5d0:	62 de       	rcall	.-828    	; 0x296 <i2cWrite(unsigned char, unsigned char, unsigned char, unsigned char, bool) [clone .constprop.9]>
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:187
+
+  // Set up accelerometer
+  i2cWrite(0b00100010, ADDR_ACCEL, CTRL_REG1_A, 1);   // normal mode, 10 Hz, enable Y-axis
+ 5d2:	40 e2       	ldi	r20, 0x20	; 32
+ 5d4:	69 e1       	ldi	r22, 0x19	; 25
+ 5d6:	82 e2       	ldi	r24, 0x22	; 34
+ 5d8:	5e de       	rcall	.-836    	; 0x296 <i2cWrite(unsigned char, unsigned char, unsigned char, unsigned char, bool) [clone .constprop.9]>
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:188
+  i2cWrite(0, ADDR_ACCEL, CTRL_REG4_A, 1);            // full scale = +/-2 g
+ 5da:	43 e2       	ldi	r20, 0x23	; 35
+ 5dc:	69 e1       	ldi	r22, 0x19	; 25
+ 5de:	80 e0       	ldi	r24, 0x00	; 0
+ 5e0:	5a de       	rcall	.-844    	; 0x296 <i2cWrite(unsigned char, unsigned char, unsigned char, unsigned char, bool) [clone .constprop.9]>
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:189
+  i2cWrite(0b00100010, ADDR_ACCEL, CTRL_REG6_A, 1);   // enable interrupt, active-low on INT2
+ 5e2:	45 e2       	ldi	r20, 0x25	; 37
+ 5e4:	69 e1       	ldi	r22, 0x19	; 25
+ 5e6:	82 e2       	ldi	r24, 0x22	; 34
+ 5e8:	56 de       	rcall	.-852    	; 0x296 <i2cWrite(unsigned char, unsigned char, unsigned char, unsigned char, bool) [clone .constprop.9]>
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:190
+  i2cWrite(1 << 3, ADDR_ACCEL, INT2_CFG_A, 1);        // INT2 activates when abs(y) > threshold
+ 5ea:	44 e3       	ldi	r20, 0x34	; 52
+ 5ec:	69 e1       	ldi	r22, 0x19	; 25
+ 5ee:	88 e0       	ldi	r24, 0x08	; 8
+ 5f0:	52 de       	rcall	.-860    	; 0x296 <i2cWrite(unsigned char, unsigned char, unsigned char, unsigned char, bool) [clone .constprop.9]>
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:191
+  i2cWrite(static_cast<uint8_t>(accel_threshold/9.8*1000/(2000./128)), ADDR_ACCEL, INT2_THS_A, 1);  // set threshold for interrupt
+ 5f2:	46 e3       	ldi	r20, 0x36	; 54
+ 5f4:	69 e1       	ldi	r22, 0x19	; 25
+ 5f6:	8d e2       	ldi	r24, 0x2D	; 45
+ 5f8:	4e de       	rcall	.-868    	; 0x296 <i2cWrite(unsigned char, unsigned char, unsigned char, unsigned char, bool) [clone .constprop.9]>
+VCNL4020_Init():
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:19
+
+// Initialize sensor in idle state
+VCNL4020_Status VCNL4020_Init(VCNL4020 *pDevice) 
+{
+    // Initial delay to allow sensor to power up
+    delay(10);
+ 5fa:	6a e0       	ldi	r22, 0x0A	; 10
+ 5fc:	70 e0       	ldi	r23, 0x00	; 0
+ 5fe:	80 e0       	ldi	r24, 0x00	; 0
+ 600:	90 e0       	ldi	r25, 0x00	; 0
+ 602:	8a dd       	rcall	.-1260   	; 0x118 <delay>
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:22
+
+    // Set the sensor's initial configuration
+    pDevice->address = 0x13;    // Default I2C address
+ 604:	83 e1       	ldi	r24, 0x13	; 19
+ 606:	80 93 86 00 	sts	0x0086, r24	; 0x800086 <prox_sensor>
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:23
+    pDevice->current = 0; 
+ 60a:	10 92 87 00 	sts	0x0087, r1	; 0x800087 <prox_sensor+0x1>
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:24
+    pDevice->mode = MANUAL;
+ 60e:	10 92 88 00 	sts	0x0088, r1	; 0x800088 <prox_sensor+0x2>
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:25
+    pDevice->prox_rate = 0;
+ 612:	10 92 89 00 	sts	0x0089, r1	; 0x800089 <prox_sensor+0x3>
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:28
+
+    // Check if sensor is connected via I2C
+    pDevice->connected = VCNL4020_IsConnected(pDevice);
+ 616:	bc de       	rcall	.-648    	; 0x390 <VCNL4020_IsConnected.constprop.14>
+ 618:	80 93 8a 00 	sts	0x008A, r24	; 0x80008a <prox_sensor+0x4>
+VCNL4020_SetCurrent():
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:51
+VCNL4020_Status VCNL4020_SetCurrent(VCNL4020 *pDevice, uint8_t led_current) 
+{
+    uint8_t reg_value = 0;
+
+    // Check for connection
+    pDevice->connected = VCNL4020_IsConnected(pDevice);
+ 61c:	b9 de       	rcall	.-654    	; 0x390 <VCNL4020_IsConnected.constprop.14>
+ 61e:	80 93 8a 00 	sts	0x008A, r24	; 0x80008a <prox_sensor+0x4>
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:52
+    if (!pDevice->connected) {
+ 622:	88 23       	and	r24, r24
+ 624:	49 f0       	breq	.+18     	; 0x638 <main+0xc6>
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:63
+        return STATUS_INVALID_PARAM;     // Invalid current value
+    }
+    
+    // Write to register via I2C
+    reg_value = led_current / 10;
+    I2C_WriteRegister(pDevice->address, REG_CURRENT, 1, reg_value);
+ 626:	4f e0       	ldi	r20, 0x0F	; 15
+ 628:	50 e0       	ldi	r21, 0x00	; 0
+ 62a:	63 e8       	ldi	r22, 0x83	; 131
+ 62c:	80 91 86 00 	lds	r24, 0x0086	; 0x800086 <prox_sensor>
+ 630:	26 de       	rcall	.-948    	; 0x27e <I2C_WriteRegister.constprop.23>
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:64
+    pDevice->current = led_current;
+ 632:	86 e9       	ldi	r24, 0x96	; 150
+ 634:	80 93 87 00 	sts	0x0087, r24	; 0x800087 <prox_sensor+0x1>
+VCNL4020_SetMode():
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:74
+VCNL4020_Status VCNL4020_SetMode(VCNL4020 *pDevice, VCNL4020_Mode mode) 
+{
+    uint8_t reg_value = 0;
+
+    // Check for connection
+    pDevice->connected = VCNL4020_IsConnected(pDevice);
+ 638:	ab de       	rcall	.-682    	; 0x390 <VCNL4020_IsConnected.constprop.14>
+ 63a:	80 93 8a 00 	sts	0x008A, r24	; 0x80008a <prox_sensor+0x4>
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:75
+    if (!pDevice->connected) {
+ 63e:	88 23       	and	r24, r24
+ 640:	69 f0       	breq	.+26     	; 0x65c <main+0xea>
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:85
+    if (mode > 0x07) {
+        return STATUS_INVALID_PARAM; // Invalid mode
+    }
+
+    // Update bits 0-2 based on mode
+    I2C_WriteRegister(pDevice->address, REG_COMMAND, 1, mode);
+ 642:	50 e0       	ldi	r21, 0x00	; 0
+ 644:	40 e0       	ldi	r20, 0x00	; 0
+ 646:	60 e8       	ldi	r22, 0x80	; 128
+ 648:	80 91 86 00 	lds	r24, 0x0086	; 0x800086 <prox_sensor>
+ 64c:	18 de       	rcall	.-976    	; 0x27e <I2C_WriteRegister.constprop.23>
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:86
+    delay(10);
+ 64e:	6a e0       	ldi	r22, 0x0A	; 10
+ 650:	70 e0       	ldi	r23, 0x00	; 0
+ 652:	80 e0       	ldi	r24, 0x00	; 0
+ 654:	90 e0       	ldi	r25, 0x00	; 0
+ 656:	60 dd       	rcall	.-1344   	; 0x118 <delay>
+/Users/aesters/Documents/Arduino/libraries/vcnl4020-arduino-driver/src/VCNL4020.cpp:89
+
+    // Update struct
+    pDevice->mode = mode;
+ 658:	10 92 88 00 	sts	0x0088, r1	; 0x800088 <prox_sensor+0x2>
+setupSensors():
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:198
+
+  // Set up proximity sensor
+  VCNL4020_Init(&prox_sensor);
+  VCNL4020_SetCurrent(&prox_sensor, led_current);   // set IR LED current
+  VCNL4020_SetMode(&prox_sensor, MANUAL);           // get measurements on demand 
+  delay(10);   
+ 65c:	6a e0       	ldi	r22, 0x0A	; 10
+ 65e:	70 e0       	ldi	r23, 0x00	; 0
+ 660:	80 e0       	ldi	r24, 0x00	; 0
+ 662:	90 e0       	ldi	r25, 0x00	; 0
+ 664:	59 dd       	rcall	.-1358   	; 0x118 <delay>
+setup():
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:125
+  if (do_calib) {
+    background = proxCalibration(&prox_sensor);
+    prox_threshold = pthresh_with_calib;
+  } 
+  else {
+    background = 0;
+ 666:	10 92 85 00 	sts	0x0085, r1	; 0x800085 <background+0x1>
+ 66a:	10 92 84 00 	sts	0x0084, r1	; 0x800084 <background>
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:126
+    prox_threshold = pthresh_no_calib;
+ 66e:	80 ea       	ldi	r24, 0xA0	; 160
+ 670:	9f e0       	ldi	r25, 0x0F	; 15
+ 672:	90 93 83 00 	sts	0x0083, r25	; 0x800083 <prox_threshold+0x1>
+ 676:	80 93 82 00 	sts	0x0082, r24	; 0x800082 <prox_threshold>
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:130
+  }
+
+  /// SET UP SLEEP/INTERRUPT LOGIC ///
+  cli(); // Disable interrupts temporarily
+ 67a:	f8 94       	cli
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:133
+
+  // Enable Pin Change Interrupt on PB3 (Pin 2 on ATtiny85)
+  GIMSK |= (1 << PCIE);    // Enable Pin Change Interrupts
+ 67c:	8b b7       	in	r24, 0x3b	; 59
+ 67e:	80 62       	ori	r24, 0x20	; 32
+ 680:	8b bf       	out	0x3b, r24	; 59
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:134
+  PCMSK |= (1 << PCINT3); // Enable Pin Change Interrupt on PB3
+ 682:	ab 9a       	sbi	0x15, 3	; 21
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:135
+  sleep_bod_disable(); // Disable brown-out detector
+ 684:	85 b7       	in	r24, 0x35	; 53
+ 686:	84 68       	ori	r24, 0x84	; 132
+ 688:	85 bf       	out	0x35, r24	; 53
+ 68a:	8b 7f       	andi	r24, 0xFB	; 251
+ 68c:	85 bf       	out	0x35, r24	; 53
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:137
+
+  sei(); // Re-enable interrupts
+ 68e:	78 94       	sei
+requestFrom():
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:426
+  // clamp to buffer length
+  if (quantity > TWI_BUFFER_SIZE) {
+    quantity = TWI_BUFFER_SIZE;
+  }
+  // set address of targeted slave and read mode
+  Buffer[0] = (address << TWI_ADR_BITS) | (1 << TWI_READ_BIT);
+ 690:	13 e3       	ldi	r17, 0x33	; 51
+loop():
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:143
+}
+
+void loop() 
+{
+  // go back to sleep if interrupt is HIGH
+  if (digitalRead(INT_PIN) == HIGH) { 
+ 692:	2e de       	rcall	.-932    	; 0x2f0 <digitalRead.constprop.0>
+ 694:	01 97       	sbiw	r24, 0x01	; 1
+ 696:	21 f4       	brne	.+8      	; 0x6a0 <main+0x12e>
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:145
+    //i2cWrite(1, ADDR_PROX, PROX_REG_00, 1);   // stop prox measurements
+    digitalWrite(ALERT_PIN, LOW);
+ 698:	80 e0       	ldi	r24, 0x00	; 0
+ 69a:	1c de       	rcall	.-968    	; 0x2d4 <digitalWrite.constprop.10>
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:155
+  else if (digitalRead(INT_PIN) == LOW) {
+    accel = readAccelY();
+
+    // arm is down -> not the signal we want 
+    if (accel < 0) {  
+      goToSleep();    
+ 69c:	09 de       	rcall	.-1006   	; 0x2b0 <goToSleep()>
+ 69e:	f9 cf       	rjmp	.-14     	; 0x692 <main+0x120>
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:150
+    digitalWrite(ALERT_PIN, LOW);
+    goToSleep();
+  }
+
+  // check accel reading if interrupt is LOW
+  else if (digitalRead(INT_PIN) == LOW) {
+ 6a0:	27 de       	rcall	.-946    	; 0x2f0 <digitalRead.constprop.0>
+ 6a2:	89 2b       	or	r24, r25
+ 6a4:	b1 f7       	brne	.-20     	; 0x692 <main+0x120>
+i2cRead():
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:56
+T i2cRead(uint8_t deviceAddress, uint8_t startRegister, uint8_t numBytes, bool bigEndian = false) 
+{ 
+  uint16_t rawValue = 0;   // max: 2 bytes worth  
+
+  // start I2C comms with device
+  Wire.beginTransmission(deviceAddress);  
+ 6a6:	89 e1       	ldi	r24, 0x19	; 25
+ 6a8:	fe dc       	rcall	.-1540   	; 0xa6 <TwoWire::beginTransmission(unsigned char) [clone .constprop.24]>
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:59
+
+  // set target register for reading
+  Wire.write(startRegister);
+ 6aa:	8a ea       	ldi	r24, 0xAA	; 170
+ 6ac:	c9 dc       	rcall	.-1646   	; 0x40 <TwoWire::write(unsigned char) [clone .constprop.25]>
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:60
+  Wire.endTransmission();
+ 6ae:	c7 dd       	rcall	.-1138   	; 0x23e <TwoWire::endTransmission() [clone .constprop.26]>
+requestFrom():
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:426
+ 6b0:	10 93 60 00 	sts	0x0060, r17	; 0x800060 <__DATA_REGION_ORIGIN__>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:429
+  // perform blocking read into buffer
+  uint8_t ret = USI_TWI_Start_Transceiver_With_Data_Stop(Buffer, quantity,
+                                                         sendStop);
+ 6b4:	41 e0       	ldi	r20, 0x01	; 1
+ 6b6:	63 e0       	ldi	r22, 0x03	; 3
+ 6b8:	80 e6       	ldi	r24, 0x60	; 96
+ 6ba:	90 e0       	ldi	r25, 0x00	; 0
+ 6bc:	51 dd       	rcall	.-1374   	; 0x160 <USI_TWI_Start_Transceiver_With_Data_Stop>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:431
+  // set rx buffer iterator vars
+  BufferIndex = 1; // ignore slave address
+ 6be:	91 e0       	ldi	r25, 0x01	; 1
+ 6c0:	90 93 91 00 	sts	0x0091, r25	; 0x800091 <TwoWire::BufferIndex>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:433
+  // check for error
+  if (ret == FALSE) {
+ 6c4:	81 11       	cpse	r24, r1
+ 6c6:	36 c0       	rjmp	.+108    	; 0x734 <main+0x1c2>
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:434
+    BufferLength = BufferIndex;
+ 6c8:	90 93 92 00 	sts	0x0092, r25	; 0x800092 <TwoWire::BufferLength>
+i2cRead():
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:65
+
+  // read contents from consecutive registers
+  Wire.requestFrom(deviceAddress, numBytes); 
+  for (int i = 0; i < numBytes; i++) {    
+    uint8_t currentByte = Wire.read();
+ 6cc:	f7 dc       	rcall	.-1554   	; 0xbc <TwoWire::read() [clone .constprop.21]>
+ 6ce:	08 2f       	mov	r16, r24
+ 6d0:	f5 dc       	rcall	.-1558   	; 0xbc <TwoWire::read() [clone .constprop.21]>
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:70
+    if (bigEndian) {
+      rawValue |= uint16_t (currentByte << 8*(numBytes - 1 - i));
+    }
+    else {
+      rawValue |= uint16_t (currentByte << 8*i);
+ 6d2:	d8 2f       	mov	r29, r24
+ 6d4:	80 e0       	ldi	r24, 0x00	; 0
+ 6d6:	c8 2f       	mov	r28, r24
+ 6d8:	be 01       	movw	r22, r28
+ 6da:	60 2b       	or	r22, r16
+readAccelY():
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:237
+// Read acceleration along Y axis
+float readAccelY() 
+{
+  // get acceleration readings (must set MSB to 1 to read consecutive registers)
+  int16_t rawValue = i2cRead<int16_t>(ADDR_ACCEL, ACCEL_OUT_Y | (1 << 7), 2); 
+  rawValue = rawValue >> 6;  // remove lower 6 bits
+ 6dc:	86 e0       	ldi	r24, 0x06	; 6
+ 6de:	75 95       	asr	r23
+ 6e0:	67 95       	ror	r22
+ 6e2:	8a 95       	dec	r24
+ 6e4:	e1 f7       	brne	.-8      	; 0x6de <main+0x16c>
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:240
+
+  // convert to signed int, then convert to m/s^2 (normal mode = 3.9 milli-g per bit)
+  return 3.9 * 9.8 / 1000 * rawValue;
+ 6e6:	07 2e       	mov	r0, r23
+ 6e8:	00 0c       	add	r0, r0
+ 6ea:	88 0b       	sbc	r24, r24
+ 6ec:	99 0b       	sbc	r25, r25
+ 6ee:	2e d0       	rcall	.+92     	; 0x74c <__floatsisf>
+ 6f0:	23 e9       	ldi	r18, 0x93	; 147
+ 6f2:	3c e8       	ldi	r19, 0x8C	; 140
+ 6f4:	4c e1       	ldi	r20, 0x1C	; 28
+ 6f6:	5d e3       	ldi	r21, 0x3D	; 61
+ 6f8:	88 d0       	rcall	.+272    	; 0x80a <__mulsf3>
+loop():
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:154
+  // check accel reading if interrupt is LOW
+  else if (digitalRead(INT_PIN) == LOW) {
+    accel = readAccelY();
+
+    // arm is down -> not the signal we want 
+    if (accel < 0) {  
+ 6fa:	20 e0       	ldi	r18, 0x00	; 0
+ 6fc:	30 e0       	ldi	r19, 0x00	; 0
+ 6fe:	a9 01       	movw	r20, r18
+ 700:	1f d0       	rcall	.+62     	; 0x740 <__cmpsf2>
+ 702:	87 fd       	sbrc	r24, 7
+ 704:	cb cf       	rjmp	.-106    	; 0x69c <main+0x12a>
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:160
+      goToSleep();    
+    }
+    // arm is up -> get proximity measurements
+    else {   
+      // check if prox reading > threshold
+      prox = VCNL4020_ReadProximity(&prox_sensor);
+ 706:	5e de       	rcall	.-836    	; 0x3c4 <VCNL4020_ReadProximity.constprop.11>
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:161
+      prox = prox - background;
+ 708:	20 91 84 00 	lds	r18, 0x0084	; 0x800084 <background>
+ 70c:	30 91 85 00 	lds	r19, 0x0085	; 0x800085 <background+0x1>
+ 710:	82 1b       	sub	r24, r18
+ 712:	93 0b       	sbc	r25, r19
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:162
+      if (prox > prox_threshold) {  
+ 714:	20 91 82 00 	lds	r18, 0x0082	; 0x800082 <prox_threshold>
+ 718:	30 91 83 00 	lds	r19, 0x0083	; 0x800083 <prox_threshold+0x1>
+ 71c:	28 17       	cp	r18, r24
+ 71e:	39 07       	cpc	r19, r25
+ 720:	68 f4       	brcc	.+26     	; 0x73c <main+0x1ca>
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:163
+        digitalWrite(ALERT_PIN, HIGH);  // activate buzzer
+ 722:	81 e0       	ldi	r24, 0x01	; 1
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:165
+      } else {
+        digitalWrite(ALERT_PIN, LOW);   // deactivate buzzer
+ 724:	d7 dd       	rcall	.-1106   	; 0x2d4 <digitalWrite.constprop.10>
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:167
+      }
+      VCNL4020_ClearInterrupts(&prox_sensor);
+ 726:	3f de       	rcall	.-898    	; 0x3a6 <VCNL4020_ClearInterrupts.constprop.13>
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:168
+      delay(period);
+ 728:	68 ec       	ldi	r22, 0xC8	; 200
+ 72a:	70 e0       	ldi	r23, 0x00	; 0
+ 72c:	80 e0       	ldi	r24, 0x00	; 0
+ 72e:	90 e0       	ldi	r25, 0x00	; 0
+ 730:	f3 dc       	rcall	.-1562   	; 0x118 <delay>
+ 732:	af cf       	rjmp	.-162    	; 0x692 <main+0x120>
+requestFrom():
+/Users/aesters/Library/Arduino15/packages/ATTinyCore/hardware/avr/1.5.2/libraries/Wire/src/Wire.cpp:437
+    return 0;
+  }
+  BufferLength = quantity;
+ 734:	83 e0       	ldi	r24, 0x03	; 3
+ 736:	80 93 92 00 	sts	0x0092, r24	; 0x800092 <TwoWire::BufferLength>
+ 73a:	c8 cf       	rjmp	.-112    	; 0x6cc <main+0x15a>
+loop():
+/Users/aesters/Documents/Arduino/dtyf_beta_attiny85_fw/dtyf_beta_attiny85_fw.ino:165
+      prox = VCNL4020_ReadProximity(&prox_sensor);
+      prox = prox - background;
+      if (prox > prox_threshold) {  
+        digitalWrite(ALERT_PIN, HIGH);  // activate buzzer
+      } else {
+        digitalWrite(ALERT_PIN, LOW);   // deactivate buzzer
+ 73c:	80 e0       	ldi	r24, 0x00	; 0
+ 73e:	f2 cf       	rjmp	.-28     	; 0x724 <main+0x1b2>
+
+00000740 <__cmpsf2>:
+__cmpsf2():
+ 740:	40 d0       	rcall	.+128    	; 0x7c2 <__fp_cmp>
+ 742:	08 f4       	brcc	.+2      	; 0x746 <__cmpsf2+0x6>
+ 744:	81 e0       	ldi	r24, 0x01	; 1
+ 746:	08 95       	ret
+
+00000748 <__floatunsisf>:
+__floatunsisf():
+ 748:	e8 94       	clt
+ 74a:	09 c0       	rjmp	.+18     	; 0x75e <__floatsisf+0x12>
+
+0000074c <__floatsisf>:
+ 74c:	97 fb       	bst	r25, 7
+ 74e:	3e f4       	brtc	.+14     	; 0x75e <__floatsisf+0x12>
+ 750:	90 95       	com	r25
+ 752:	80 95       	com	r24
+ 754:	70 95       	com	r23
+ 756:	61 95       	neg	r22
+ 758:	7f 4f       	sbci	r23, 0xFF	; 255
+ 75a:	8f 4f       	sbci	r24, 0xFF	; 255
+ 75c:	9f 4f       	sbci	r25, 0xFF	; 255
+ 75e:	99 23       	and	r25, r25
+ 760:	a9 f0       	breq	.+42     	; 0x78c <__floatsisf+0x40>
+ 762:	f9 2f       	mov	r31, r25
+ 764:	96 e9       	ldi	r25, 0x96	; 150
+ 766:	bb 27       	eor	r27, r27
+ 768:	93 95       	inc	r25
+ 76a:	f6 95       	lsr	r31
+ 76c:	87 95       	ror	r24
+ 76e:	77 95       	ror	r23
+ 770:	67 95       	ror	r22
+ 772:	b7 95       	ror	r27
+ 774:	f1 11       	cpse	r31, r1
+ 776:	f8 cf       	rjmp	.-16     	; 0x768 <__floatsisf+0x1c>
+ 778:	fa f4       	brpl	.+62     	; 0x7b8 <__floatsisf+0x6c>
+ 77a:	bb 0f       	add	r27, r27
+ 77c:	11 f4       	brne	.+4      	; 0x782 <__floatsisf+0x36>
+ 77e:	60 ff       	sbrs	r22, 0
+ 780:	1b c0       	rjmp	.+54     	; 0x7b8 <__floatsisf+0x6c>
+ 782:	6f 5f       	subi	r22, 0xFF	; 255
+ 784:	7f 4f       	sbci	r23, 0xFF	; 255
+ 786:	8f 4f       	sbci	r24, 0xFF	; 255
+ 788:	9f 4f       	sbci	r25, 0xFF	; 255
+ 78a:	16 c0       	rjmp	.+44     	; 0x7b8 <__floatsisf+0x6c>
+ 78c:	88 23       	and	r24, r24
+ 78e:	11 f0       	breq	.+4      	; 0x794 <__floatsisf+0x48>
+ 790:	96 e9       	ldi	r25, 0x96	; 150
+ 792:	11 c0       	rjmp	.+34     	; 0x7b6 <__floatsisf+0x6a>
+ 794:	77 23       	and	r23, r23
+ 796:	21 f0       	breq	.+8      	; 0x7a0 <__floatsisf+0x54>
+ 798:	9e e8       	ldi	r25, 0x8E	; 142
+ 79a:	87 2f       	mov	r24, r23
+ 79c:	76 2f       	mov	r23, r22
+ 79e:	05 c0       	rjmp	.+10     	; 0x7aa <__floatsisf+0x5e>
+ 7a0:	66 23       	and	r22, r22
+ 7a2:	71 f0       	breq	.+28     	; 0x7c0 <__floatsisf+0x74>
+ 7a4:	96 e8       	ldi	r25, 0x86	; 134
+ 7a6:	86 2f       	mov	r24, r22
+ 7a8:	70 e0       	ldi	r23, 0x00	; 0
+ 7aa:	60 e0       	ldi	r22, 0x00	; 0
+ 7ac:	2a f0       	brmi	.+10     	; 0x7b8 <__floatsisf+0x6c>
+ 7ae:	9a 95       	dec	r25
+ 7b0:	66 0f       	add	r22, r22
+ 7b2:	77 1f       	adc	r23, r23
+ 7b4:	88 1f       	adc	r24, r24
+ 7b6:	da f7       	brpl	.-10     	; 0x7ae <__floatsisf+0x62>
+ 7b8:	88 0f       	add	r24, r24
+ 7ba:	96 95       	lsr	r25
+ 7bc:	87 95       	ror	r24
+ 7be:	97 f9       	bld	r25, 7
+ 7c0:	08 95       	ret
+
+000007c2 <__fp_cmp>:
+__fp_cmp():
+ 7c2:	99 0f       	add	r25, r25
+ 7c4:	00 08       	sbc	r0, r0
+ 7c6:	55 0f       	add	r21, r21
+ 7c8:	aa 0b       	sbc	r26, r26
+ 7ca:	e0 e8       	ldi	r30, 0x80	; 128
+ 7cc:	fe ef       	ldi	r31, 0xFE	; 254
+ 7ce:	16 16       	cp	r1, r22
+ 7d0:	17 06       	cpc	r1, r23
+ 7d2:	e8 07       	cpc	r30, r24
+ 7d4:	f9 07       	cpc	r31, r25
+ 7d6:	c0 f0       	brcs	.+48     	; 0x808 <__fp_cmp+0x46>
+ 7d8:	12 16       	cp	r1, r18
+ 7da:	13 06       	cpc	r1, r19
+ 7dc:	e4 07       	cpc	r30, r20
+ 7de:	f5 07       	cpc	r31, r21
+ 7e0:	98 f0       	brcs	.+38     	; 0x808 <__fp_cmp+0x46>
+ 7e2:	62 1b       	sub	r22, r18
+ 7e4:	73 0b       	sbc	r23, r19
+ 7e6:	84 0b       	sbc	r24, r20
+ 7e8:	95 0b       	sbc	r25, r21
+ 7ea:	39 f4       	brne	.+14     	; 0x7fa <__fp_cmp+0x38>
+ 7ec:	0a 26       	eor	r0, r26
+ 7ee:	61 f0       	breq	.+24     	; 0x808 <__fp_cmp+0x46>
+ 7f0:	23 2b       	or	r18, r19
+ 7f2:	24 2b       	or	r18, r20
+ 7f4:	25 2b       	or	r18, r21
+ 7f6:	21 f4       	brne	.+8      	; 0x800 <__fp_cmp+0x3e>
+ 7f8:	08 95       	ret
+ 7fa:	0a 26       	eor	r0, r26
+ 7fc:	09 f4       	brne	.+2      	; 0x800 <__fp_cmp+0x3e>
+ 7fe:	a1 40       	sbci	r26, 0x01	; 1
+ 800:	a6 95       	lsr	r26
+ 802:	8f ef       	ldi	r24, 0xFF	; 255
+ 804:	81 1d       	adc	r24, r1
+ 806:	81 1d       	adc	r24, r1
+ 808:	08 95       	ret
+
+0000080a <__mulsf3>:
+__mulsf3():
+ 80a:	0a d0       	rcall	.+20     	; 0x820 <__mulsf3x>
+ 80c:	80 c0       	rjmp	.+256    	; 0x90e <__fp_round>
+ 80e:	71 d0       	rcall	.+226    	; 0x8f2 <__fp_pscA>
+ 810:	28 f0       	brcs	.+10     	; 0x81c <__mulsf3+0x12>
+ 812:	76 d0       	rcall	.+236    	; 0x900 <__fp_pscB>
+ 814:	18 f0       	brcs	.+6      	; 0x81c <__mulsf3+0x12>
+ 816:	95 23       	and	r25, r21
+ 818:	09 f0       	breq	.+2      	; 0x81c <__mulsf3+0x12>
+ 81a:	62 c0       	rjmp	.+196    	; 0x8e0 <__fp_inf>
+ 81c:	67 c0       	rjmp	.+206    	; 0x8ec <__fp_nan>
+ 81e:	ab c0       	rjmp	.+342    	; 0x976 <__fp_szero>
+
+00000820 <__mulsf3x>:
+__mulsf3x():
+ 820:	87 d0       	rcall	.+270    	; 0x930 <__fp_split3>
+ 822:	a8 f3       	brcs	.-22     	; 0x80e <__mulsf3+0x4>
+
+00000824 <__mulsf3_pse>:
+ 824:	99 23       	and	r25, r25
+ 826:	d9 f3       	breq	.-10     	; 0x81e <__mulsf3+0x14>
+ 828:	55 23       	and	r21, r21
+ 82a:	c9 f3       	breq	.-14     	; 0x81e <__mulsf3+0x14>
+ 82c:	95 0f       	add	r25, r21
+ 82e:	50 e0       	ldi	r21, 0x00	; 0
+ 830:	55 1f       	adc	r21, r21
+ 832:	aa 27       	eor	r26, r26
+ 834:	ee 27       	eor	r30, r30
+ 836:	ff 27       	eor	r31, r31
+ 838:	bb 27       	eor	r27, r27
+ 83a:	00 24       	eor	r0, r0
+ 83c:	08 94       	sec
+ 83e:	67 95       	ror	r22
+ 840:	20 f4       	brcc	.+8      	; 0x84a <__mulsf3_pse+0x26>
+ 842:	e2 0f       	add	r30, r18
+ 844:	f3 1f       	adc	r31, r19
+ 846:	b4 1f       	adc	r27, r20
+ 848:	0a 1e       	adc	r0, r26
+ 84a:	22 0f       	add	r18, r18
+ 84c:	33 1f       	adc	r19, r19
+ 84e:	44 1f       	adc	r20, r20
+ 850:	aa 1f       	adc	r26, r26
+ 852:	66 95       	lsr	r22
+ 854:	a9 f7       	brne	.-22     	; 0x840 <__mulsf3_pse+0x1c>
+ 856:	77 95       	ror	r23
+ 858:	30 f4       	brcc	.+12     	; 0x866 <__mulsf3_pse+0x42>
+ 85a:	f3 0f       	add	r31, r19
+ 85c:	b4 1f       	adc	r27, r20
+ 85e:	0a 1e       	adc	r0, r26
+ 860:	12 1e       	adc	r1, r18
+ 862:	08 f4       	brcc	.+2      	; 0x866 <__mulsf3_pse+0x42>
+ 864:	63 95       	inc	r22
+ 866:	33 0f       	add	r19, r19
+ 868:	44 1f       	adc	r20, r20
+ 86a:	aa 1f       	adc	r26, r26
+ 86c:	22 1f       	adc	r18, r18
+ 86e:	76 95       	lsr	r23
+ 870:	99 f7       	brne	.-26     	; 0x858 <__mulsf3_pse+0x34>
+ 872:	87 95       	ror	r24
+ 874:	20 f4       	brcc	.+8      	; 0x87e <__mulsf3_pse+0x5a>
+ 876:	b4 0f       	add	r27, r20
+ 878:	0a 1e       	adc	r0, r26
+ 87a:	12 1e       	adc	r1, r18
+ 87c:	63 1f       	adc	r22, r19
+ 87e:	44 0f       	add	r20, r20
+ 880:	aa 1f       	adc	r26, r26
+ 882:	22 1f       	adc	r18, r18
+ 884:	33 1f       	adc	r19, r19
+ 886:	86 95       	lsr	r24
+ 888:	a9 f7       	brne	.-22     	; 0x874 <__mulsf3_pse+0x50>
+ 88a:	86 2f       	mov	r24, r22
+ 88c:	71 2d       	mov	r23, r1
+ 88e:	60 2d       	mov	r22, r0
+ 890:	11 24       	eor	r1, r1
+ 892:	9f 57       	subi	r25, 0x7F	; 127
+ 894:	50 40       	sbci	r21, 0x00	; 0
+ 896:	8a f0       	brmi	.+34     	; 0x8ba <__mulsf3_pse+0x96>
+ 898:	e1 f0       	breq	.+56     	; 0x8d2 <__mulsf3_pse+0xae>
+ 89a:	88 23       	and	r24, r24
+ 89c:	4a f0       	brmi	.+18     	; 0x8b0 <__mulsf3_pse+0x8c>
+ 89e:	ee 0f       	add	r30, r30
+ 8a0:	ff 1f       	adc	r31, r31
+ 8a2:	bb 1f       	adc	r27, r27
+ 8a4:	66 1f       	adc	r22, r22
+ 8a6:	77 1f       	adc	r23, r23
+ 8a8:	88 1f       	adc	r24, r24
+ 8aa:	91 50       	subi	r25, 0x01	; 1
+ 8ac:	50 40       	sbci	r21, 0x00	; 0
+ 8ae:	a9 f7       	brne	.-22     	; 0x89a <__mulsf3_pse+0x76>
+ 8b0:	9e 3f       	cpi	r25, 0xFE	; 254
+ 8b2:	51 05       	cpc	r21, r1
+ 8b4:	70 f0       	brcs	.+28     	; 0x8d2 <__mulsf3_pse+0xae>
+ 8b6:	14 c0       	rjmp	.+40     	; 0x8e0 <__fp_inf>
+ 8b8:	5e c0       	rjmp	.+188    	; 0x976 <__fp_szero>
+ 8ba:	5f 3f       	cpi	r21, 0xFF	; 255
+ 8bc:	ec f3       	brlt	.-6      	; 0x8b8 <__mulsf3_pse+0x94>
+ 8be:	98 3e       	cpi	r25, 0xE8	; 232
+ 8c0:	dc f3       	brlt	.-10     	; 0x8b8 <__mulsf3_pse+0x94>
+ 8c2:	86 95       	lsr	r24
+ 8c4:	77 95       	ror	r23
+ 8c6:	67 95       	ror	r22
+ 8c8:	b7 95       	ror	r27
+ 8ca:	f7 95       	ror	r31
+ 8cc:	e7 95       	ror	r30
+ 8ce:	9f 5f       	subi	r25, 0xFF	; 255
+ 8d0:	c1 f7       	brne	.-16     	; 0x8c2 <__mulsf3_pse+0x9e>
+ 8d2:	fe 2b       	or	r31, r30
+ 8d4:	88 0f       	add	r24, r24
+ 8d6:	91 1d       	adc	r25, r1
+ 8d8:	96 95       	lsr	r25
+ 8da:	87 95       	ror	r24
+ 8dc:	97 f9       	bld	r25, 7
+ 8de:	08 95       	ret
+
+000008e0 <__fp_inf>:
+ 8e0:	97 f9       	bld	r25, 7
+ 8e2:	9f 67       	ori	r25, 0x7F	; 127
+ 8e4:	80 e8       	ldi	r24, 0x80	; 128
+ 8e6:	70 e0       	ldi	r23, 0x00	; 0
+ 8e8:	60 e0       	ldi	r22, 0x00	; 0
+ 8ea:	08 95       	ret
+
+000008ec <__fp_nan>:
+ 8ec:	9f ef       	ldi	r25, 0xFF	; 255
+ 8ee:	80 ec       	ldi	r24, 0xC0	; 192
+ 8f0:	08 95       	ret
+
+000008f2 <__fp_pscA>:
+__fp_pscA():
+ 8f2:	00 24       	eor	r0, r0
+ 8f4:	0a 94       	dec	r0
+ 8f6:	16 16       	cp	r1, r22
+ 8f8:	17 06       	cpc	r1, r23
+ 8fa:	18 06       	cpc	r1, r24
+ 8fc:	09 06       	cpc	r0, r25
+ 8fe:	08 95       	ret
+
+00000900 <__fp_pscB>:
+__fp_pscB():
+ 900:	00 24       	eor	r0, r0
+ 902:	0a 94       	dec	r0
+ 904:	12 16       	cp	r1, r18
+ 906:	13 06       	cpc	r1, r19
+ 908:	14 06       	cpc	r1, r20
+ 90a:	05 06       	cpc	r0, r21
+ 90c:	08 95       	ret
+
+0000090e <__fp_round>:
+__fp_round():
+ 90e:	09 2e       	mov	r0, r25
+ 910:	03 94       	inc	r0
+ 912:	00 0c       	add	r0, r0
+ 914:	11 f4       	brne	.+4      	; 0x91a <__fp_round+0xc>
+ 916:	88 23       	and	r24, r24
+ 918:	52 f0       	brmi	.+20     	; 0x92e <__fp_round+0x20>
+ 91a:	bb 0f       	add	r27, r27
+ 91c:	40 f4       	brcc	.+16     	; 0x92e <__fp_round+0x20>
+ 91e:	bf 2b       	or	r27, r31
+ 920:	11 f4       	brne	.+4      	; 0x926 <__fp_round+0x18>
+ 922:	60 ff       	sbrs	r22, 0
+ 924:	04 c0       	rjmp	.+8      	; 0x92e <__fp_round+0x20>
+ 926:	6f 5f       	subi	r22, 0xFF	; 255
+ 928:	7f 4f       	sbci	r23, 0xFF	; 255
+ 92a:	8f 4f       	sbci	r24, 0xFF	; 255
+ 92c:	9f 4f       	sbci	r25, 0xFF	; 255
+ 92e:	08 95       	ret
+
+00000930 <__fp_split3>:
+__fp_split3():
+ 930:	57 fd       	sbrc	r21, 7
+ 932:	90 58       	subi	r25, 0x80	; 128
+ 934:	44 0f       	add	r20, r20
+ 936:	55 1f       	adc	r21, r21
+ 938:	59 f0       	breq	.+22     	; 0x950 <__fp_splitA+0x10>
+ 93a:	5f 3f       	cpi	r21, 0xFF	; 255
+ 93c:	71 f0       	breq	.+28     	; 0x95a <__fp_splitA+0x1a>
+ 93e:	47 95       	ror	r20
+
+00000940 <__fp_splitA>:
+ 940:	88 0f       	add	r24, r24
+ 942:	97 fb       	bst	r25, 7
+ 944:	99 1f       	adc	r25, r25
+ 946:	61 f0       	breq	.+24     	; 0x960 <__fp_splitA+0x20>
+ 948:	9f 3f       	cpi	r25, 0xFF	; 255
+ 94a:	79 f0       	breq	.+30     	; 0x96a <__fp_splitA+0x2a>
+ 94c:	87 95       	ror	r24
+ 94e:	08 95       	ret
+ 950:	12 16       	cp	r1, r18
+ 952:	13 06       	cpc	r1, r19
+ 954:	14 06       	cpc	r1, r20
+ 956:	55 1f       	adc	r21, r21
+ 958:	f2 cf       	rjmp	.-28     	; 0x93e <__fp_split3+0xe>
+ 95a:	46 95       	lsr	r20
+ 95c:	f1 df       	rcall	.-30     	; 0x940 <__fp_splitA>
+ 95e:	08 c0       	rjmp	.+16     	; 0x970 <__fp_splitA+0x30>
+ 960:	16 16       	cp	r1, r22
+ 962:	17 06       	cpc	r1, r23
+ 964:	18 06       	cpc	r1, r24
+ 966:	99 1f       	adc	r25, r25
+ 968:	f1 cf       	rjmp	.-30     	; 0x94c <__fp_splitA+0xc>
+ 96a:	86 95       	lsr	r24
+ 96c:	71 05       	cpc	r23, r1
+ 96e:	61 05       	cpc	r22, r1
+ 970:	08 94       	sec
+ 972:	08 95       	ret
+
+00000974 <__fp_zero>:
+__fp_zero():
+ 974:	e8 94       	clt
+
+00000976 <__fp_szero>:
+ 976:	bb 27       	eor	r27, r27
+ 978:	66 27       	eor	r22, r22
+ 97a:	77 27       	eor	r23, r23
+ 97c:	cb 01       	movw	r24, r22
+ 97e:	97 f9       	bld	r25, 7
+ 980:	08 95       	ret
+
+00000982 <_exit>:
+exit():
+/Users/jenkins/jenkins/workspace/avr-gcc-staging/label/mac-mini/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:2278
+ 982:	f8 94       	cli
+
+00000984 <__stop_program>:
+__stop_program():
+/Users/jenkins/jenkins/workspace/avr-gcc-staging/label/mac-mini/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:2280
+ 984:	ff cf       	rjmp	.-2      	; 0x984 <__stop_program>

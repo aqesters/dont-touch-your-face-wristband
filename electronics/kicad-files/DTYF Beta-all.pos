@@ -1,0 +1,50 @@
+### Footprint positions - created on 2025-06-02T00:56:01-0500 ###
+### Printed by KiCad version 9.0.2
+## Unit = mm, Angle = deg.
+## Side : All
+# Ref     Val                           Package                            PosX       PosY       Rot  Side
+J2        Conn_01x02_Female             SMD_Pads_X1_Y2_W3mm             37.3000    13.0000    0.0000  bottom
+J3        Conn_01x02_Female             SMD_Pads_X1_Y2_W3mm             32.7000     9.2000    0.0000  bottom
+C1        100n                          C_0402_1005Metric                4.2000     3.6000  -90.0000  top
+C2        220n                          C_0402_1005Metric               22.2000    13.4000    0.0000  top
+C3        100n                          C_0402_1005Metric                5.0000     9.0000   90.0000  top
+C4        1u                            C_0402_1005Metric               35.9000     3.8000  180.0000  top
+C5        100n                          C_0402_1005Metric               35.9000     5.0000  180.0000  top
+C6        100n                          C_0402_1005Metric               16.3000    13.0000   90.0000  top
+C7        100n                          C_0402_1005Metric               17.5000    13.0000   90.0000  top
+C8        100n                          C_0402_1005Metric               27.6000     5.4000    0.0000  top
+C9        4.7u                          C_0402_1005Metric               30.1000     5.4000  180.0000  top
+C10       100n                          C_0402_1005Metric                5.0000    11.0000  -90.0000  top
+C11       100n                          C_0402_1005Metric               31.7000    12.8000  -90.0000  top
+C12       100n                          C_0402_1005Metric               26.3000    11.6000   90.0000  top
+C13       10u                           C_0402_1005Metric               17.3000     9.3000  180.0000  top
+C14       47u                           C_0805_2012Metric               24.5000    12.1000   90.0000  top
+D1        LED_ABGR                      LED_Cree-PLCC4_2x2mm_CW          2.8000    12.3000  -90.0000  top
+D2        ESD9B5.0ST5G                  D_SOD-923                       17.4000     8.1000  180.0000  top
+D3        ESD9B3.3ST5G                  D_SOD-923                       22.0000     8.4000   90.0000  top
+D4        ESD9B3.3ST5G                  D_SOD-923                       18.9000     8.4000   90.0000  top
+J1        USB_C_Receptacle_GCT_USB4085  USB_C_Receptacle_GCT_USB4085    17.7000     6.2000    0.0000  top
+Q1        2N7002                        SOT-23                          13.4000     3.6000    0.0000  top
+R1        220                           R_0603_1608Metric                5.8000    13.2000  180.0000  top
+R2        50m                           R_0402_1005Metric               39.2000     7.9000    0.0000  top
+R3        1k                            R_0402_1005Metric               33.7000     5.2000  180.0000  top
+R4        1M                            R_0402_1005Metric               37.7000     2.2000   90.0000  top
+R5        130k                          R_0402_1005Metric               34.7000     2.2000  -90.0000  top
+R6        909                           R_0402_1005Metric               32.6000     4.0000    0.0000  top
+R7        4.7k                          R_0402_1005Metric                3.5000     1.7000  180.0000  top
+R8        22                            R_0603_1608Metric               28.7000     9.3000    0.0000  top
+R9        4.7k                          R_0402_1005Metric                1.8000     3.6000  -90.0000  top
+R10       4.7k                          R_0402_1005Metric                3.0000     3.6000  -90.0000  top
+R11       22k                           R_0402_1005Metric               32.6000     1.6000    0.0000  top
+R12       1M                            R_0402_1005Metric               32.6000     2.8000  180.0000  top
+R13       5.1k                          R_0402_1005Metric               20.1000     8.5100   90.0000  top
+R14       5.1k                          R_0402_1005Metric               23.2000     8.5000   90.0000  top
+SW1       SW_SPDT                       SW_SPDT_CK-JS102011JAQN         37.0500    11.9500  180.0000  top
+TH1       10k_therm                     R_0402_1005Metric               36.2000     2.2000  -90.0000  top
+U1        SON_03AGRTR_STM               LSM303AGR                       19.6000    12.6000  180.0000  top
+U2        STC3115AIQT                   STC3115AIQT                     39.3000     5.4000  180.0000  top
+U3        VCNL4020-GS08                 VCNL4020-GS08                    2.8000     7.6000  180.0000  top
+U4        MCP73834                      MCP73834-CNI&slash_MF           28.9000     3.0000    0.0000  top
+U5        ATtiny85-20SU                 SOIC-8_5.275x5.275mm_P1.27mm     8.6000     5.9000   90.0000  top
+U6        AP2112K-3.3                   SOT-23-5                        29.0000    12.0000  180.0000  top
+## End
